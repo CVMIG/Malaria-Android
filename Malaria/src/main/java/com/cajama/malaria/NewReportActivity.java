@@ -178,7 +178,6 @@ public class NewReportActivity extends SherlockActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_prev:
-                invalidateOptionsMenu();
                 if (VF.getDisplayedChild() == 0) {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
                     alertDialogBuilder
@@ -207,12 +206,13 @@ public class NewReportActivity extends SherlockActivity {
                 } else {
                     VF.showPrevious();
                 }
+                invalidateOptionsMenu();
                 return true;
             case R.id.action_next:
-                invalidateOptionsMenu();
                 if(VF.getDisplayedChild() != VF.getChildCount()-1) {
                     VF.showNext();
                 }
+                invalidateOptionsMenu();
                 return true;
             case R.id.action_photo:
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
