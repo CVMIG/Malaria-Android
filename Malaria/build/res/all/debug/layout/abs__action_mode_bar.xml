@@ -22,4 +22,4 @@
      android:layout_height="wrap_content"
      android:visibility="gone"
      style="?attr/actionModeStyle" />
-<!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/libraries/ActionBarSherlock/actionbarsherlock/res/layout/abs__action_mode_bar.xml --><!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/Malaria/build/exploded-bundles/MalariaProjectLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/layout/abs__action_mode_bar.xml -->
+<!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android-Current/libraries/ActionBarSherlock/actionbarsherlock/res/layout/abs__action_mode_bar.xml --><!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android-Current/Malaria/build/exploded-bundles/MalariaAndroidCurrentLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/layout/abs__action_mode_bar.xml -->

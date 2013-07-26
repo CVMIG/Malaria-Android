@@ -16,4 +16,4 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@drawable/abs__ic_menu_moreoverflow_normal_holo_light" />
 </selector>
-<!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/libraries/ActionBarSherlock/actionbarsherlock/res/drawable/abs__ic_menu_moreoverflow_holo_light.xml --><!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/Malaria/build/exploded-bundles/MalariaProjectLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/drawable/abs__ic_menu_moreoverflow_holo_light.xml -->
+<!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android-Current/libraries/ActionBarSherlock/actionbarsherlock/res/drawable/abs__ic_menu_moreoverflow_holo_light.xml --><!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android-Current/Malaria/build/exploded-bundles/MalariaAndroidCurrentLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/drawable/abs__ic_menu_moreoverflow_holo_light.xml -->

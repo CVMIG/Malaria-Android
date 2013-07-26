@@ -19,4 +19,4 @@
     <item android:color="@color/abs__bright_foreground_holo_light"/> <!-- not selected -->
 </selector>
 
-<!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/libraries/ActionBarSherlock/actionbarsherlock/res/color/abs__primary_text_disable_only_holo_light.xml --><!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/Malaria/build/exploded-bundles/MalariaProjectLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/color/abs__primary_text_disable_only_holo_light.xml -->
+<!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android-Current/libraries/ActionBarSherlock/actionbarsherlock/res/color/abs__primary_text_disable_only_holo_light.xml --><!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android-Current/Malaria/build/exploded-bundles/MalariaAndroidCurrentLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/color/abs__primary_text_disable_only_holo_light.xml -->

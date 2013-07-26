@@ -36,4 +36,4 @@
                android:adjustViewBounds="true"
                android:scaleType="fitCenter" />
 </view>
-<!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/libraries/ActionBarSherlock/actionbarsherlock/res/layout/abs__action_bar_home.xml --><!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/Malaria/build/exploded-bundles/MalariaProjectLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/layout/abs__action_bar_home.xml -->
+<!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android-Current/libraries/ActionBarSherlock/actionbarsherlock/res/layout/abs__action_bar_home.xml --><!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android-Current/Malaria/build/exploded-bundles/MalariaAndroidCurrentLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/layout/abs__action_bar_home.xml -->

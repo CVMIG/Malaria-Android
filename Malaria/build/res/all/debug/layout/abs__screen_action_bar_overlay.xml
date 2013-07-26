@@ -58,4 +58,4 @@ the Action Bar enabled overlaying application content.
                   android:visibility="gone"
                   android:gravity="center"/>
 </FrameLayout>
-<!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/libraries/ActionBarSherlock/actionbarsherlock/res/layout/abs__screen_action_bar_overlay.xml --><!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/Malaria/build/exploded-bundles/MalariaProjectLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/layout/abs__screen_action_bar_overlay.xml -->
+<!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android-Current/libraries/ActionBarSherlock/actionbarsherlock/res/layout/abs__screen_action_bar_overlay.xml --><!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android-Current/Malaria/build/exploded-bundles/MalariaAndroidCurrentLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/layout/abs__screen_action_bar_overlay.xml -->
