@@ -1,0 +1,30 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.5.+'
+    }
+}
+apply plugin: 'android'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:13.0.+'
+    compile "org.apache.httpcomponents:httpmime:4.2.5"
+    compile "org.apache.httpcomponents:httpcore:4.2.4"
+    compile "org.apache.httpcomponents:httpclient:4.2.5"
+}
+
+android {
+    compileSdkVersion 17
+    buildToolsVersion "17.0.0"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 16
+    }
+}
