@@ -38,6 +38,7 @@ public class CameraPreview extends SurfaceView implements
         mCamera.stopPreview();
         mCamera.release();
     }
+    
 
     @Override
     public void surfaceChanged(SurfaceHolder surfaceHolder, int format,
