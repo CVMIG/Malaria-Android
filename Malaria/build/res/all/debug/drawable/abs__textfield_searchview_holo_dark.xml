@@ -20,4 +20,4 @@
     <item android:drawable="@drawable/abs__textfield_search_default_holo_dark" />
 </selector>
 
-<!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/libraries/ActionBarSherlock/actionbarsherlock/res/drawable/abs__textfield_searchview_holo_dark.xml --><!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/Malaria/build/exploded-bundles/MalariaProjectLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/drawable/abs__textfield_searchview_holo_dark.xml -->
+<!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android/libraries/ActionBarSherlock/actionbarsherlock/res/drawable/abs__textfield_searchview_holo_dark.xml --><!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android/Malaria/build/exploded-bundles/MalariaAndroidLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/drawable/abs__textfield_searchview_holo_dark.xml -->

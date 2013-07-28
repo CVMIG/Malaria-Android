@@ -36,4 +36,4 @@ enabled.
          android:foregroundGravity="fill_horizontal|top"
          android:foreground="?attr/windowContentOverlay" />
 </LinearLayout>
-<!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/libraries/ActionBarSherlock/actionbarsherlock/res/layout/abs__screen_simple.xml --><!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/Malaria/build/exploded-bundles/MalariaProjectLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/layout/abs__screen_simple.xml -->
+<!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android/libraries/ActionBarSherlock/actionbarsherlock/res/layout/abs__screen_simple.xml --><!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android/Malaria/build/exploded-bundles/MalariaAndroidLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/layout/abs__screen_simple.xml -->

@@ -27,4 +27,4 @@
           android:layout_marginBottom="3dip"
           android:layout_width="match_parent"
           android:layout_height="wrap_content" />
-<!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/libraries/ActionBarSherlock/actionbarsherlock/res/layout/abs__simple_dropdown_hint.xml --><!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/Malaria/build/exploded-bundles/MalariaProjectLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/layout/abs__simple_dropdown_hint.xml -->
+<!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android/libraries/ActionBarSherlock/actionbarsherlock/res/layout/abs__simple_dropdown_hint.xml --><!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android/Malaria/build/exploded-bundles/MalariaAndroidLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/layout/abs__simple_dropdown_hint.xml -->

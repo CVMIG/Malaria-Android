@@ -48,4 +48,4 @@ the Action Bar enabled overlaying application content.
                android:layout_height="wrap_content"
                android:layout_below="@id/abs__action_bar_container" />
 </RelativeLayout>
-<!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/libraries/ActionBarSherlock/actionbarsherlock/res/layout-xlarge/abs__screen_action_bar_overlay.xml --><!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/Malaria/build/exploded-bundles/MalariaProjectLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/layout-xlarge/abs__screen_action_bar_overlay.xml -->
+<!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android/libraries/ActionBarSherlock/actionbarsherlock/res/layout-xlarge/abs__screen_action_bar_overlay.xml --><!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android/Malaria/build/exploded-bundles/MalariaAndroidLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/layout-xlarge/abs__screen_action_bar_overlay.xml -->

@@ -29,4 +29,4 @@
                android:scaleType="fitCenter"
                android:src="?attr/actionModeCloseDrawable" />
 </com.actionbarsherlock.internal.nineoldandroids.widget.NineLinearLayout>
-<!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/libraries/ActionBarSherlock/actionbarsherlock/res/layout/abs__action_mode_close_item.xml --><!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/Malaria/build/exploded-bundles/MalariaProjectLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/layout/abs__action_mode_close_item.xml -->
+<!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android/libraries/ActionBarSherlock/actionbarsherlock/res/layout/abs__action_mode_close_item.xml --><!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android/Malaria/build/exploded-bundles/MalariaAndroidLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/layout/abs__action_mode_close_item.xml -->

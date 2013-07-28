@@ -13,7 +13,7 @@
     <string name="last_name">Last Name</string>
     <string name="age">Age</string>
     <string name="take_photo">Take Photo</string>
-1    <string-array name="gender_array">
+1        <string-array name="gender_array">
         <item>Male</item>
         <item>Female</item>
     </string-array>
@@ -37,4 +37,6 @@
     <string name="diagnosis">Diagnosis</string>
     <string name="submit">Submit</string>
     <string name="summary">Summary</string>
+    <string name="title_activity_my_camera">MyCameraActivity</string>
+
 </resources>

@@ -18,4 +18,4 @@
     <item android:drawable="@drawable/abs__list_pressed_holo_light"  />
     <item android:drawable="@drawable/abs__list_longpressed_holo"  />
 </transition>
-<!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/libraries/ActionBarSherlock/actionbarsherlock/res/drawable/abs__list_selector_background_transition_holo_light.xml --><!-- From: /Users/cajama/AndroidStudioProjects/MalariaProject/Malaria/build/exploded-bundles/MalariaProjectLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/drawable/abs__list_selector_background_transition_holo_light.xml -->
+<!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android/libraries/ActionBarSherlock/actionbarsherlock/res/drawable/abs__list_selector_background_transition_holo_light.xml --><!-- From: file:/home/m/AndroidStudioProjects/Malaria-Android/Malaria/build/exploded-bundles/MalariaAndroidLibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/drawable/abs__list_selector_background_transition_holo_light.xml -->
