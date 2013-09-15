@@ -3,6 +3,7 @@ package com.cajama.android.customviews;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+import com.cajama.malaria.R;
 
 /**
  * Created by cajama on 6/26/13.

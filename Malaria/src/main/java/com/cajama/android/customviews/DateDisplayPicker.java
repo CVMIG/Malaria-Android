@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import com.cajama.malaria.R;
 
 import java.util.Calendar;
 

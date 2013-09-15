@@ -1,45 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.cajama.malaria"
-    android:versionCode="1"
-    android:versionName="1.0" >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.cajama.malaria">
 
-    <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="17" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="17"/>
+    <uses-permission android:name="android.permission.INSTALL_PACKAGES" xmlns:tools="http://schemas.android.com/tools" tools:ignore="ProtectedPermissions"/>
+    <uses-permission android:name="android.permission.DELETE_PACKAGES" xmlns:tools="http://schemas.android.com/tools" tools:ignore="ProtectedPermissions"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-feature android:name="android.hardware.camera"/>
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <application android:allowBackup="true" android:icon="@drawable/ic_launcher" android:label="@string/app_name" android:theme="@style/AppTheme">
 
-    <application
-        android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-        <activity
-            android:name="com.cajama.malaria.MainActivity"
-            android:label="@string/app_name" >
+        <activity android:label="@string/app_name" android:name="com.cajama.malaria.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.cajama.malaria.NewReportActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/title_activity_new_report"
-            android:uiOptions="splitActionBarWhenNarrow" >
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:label="@string/title_activity_new_report" android:name="com.cajama.malaria.newreport.NewReportActivity" android:uiOptions="splitActionBarWhenNarrow">
+        </activity>
+        <activity android:label="@string/title_activity_fullscreen_photo" android:name="com.cajama.malaria.newreport.FullscreenPhotoActivity">
+        </activity>
+        <activity android:label="@string/title_activity_queue_log" android:name="com.cajama.malaria.entryLogs.QueueLogActivity">
+        </activity>
+        <activity android:label="@string/title_activity_sent_log" android:name="com.cajama.malaria.entryLogs.SentLogActivity">
         </activity>
         <activity
-            android:name="com.cajama.malaria.FullscreenPhotoActivity"
-            android:label="@string/title_activity_fullscreen_photo" >
+            android:name="com.cajama.malaria.newreport.Picture"
+            android:label="@string/title_activity_picture" >
         </activity>
+        <activity android:label="InputDialog" android:name="com.cajama.background.DialogActivity" android:theme="@android:style/Theme.Dialog"/>
+        <service android:name="com.cajama.background.FinalSendingService"/>
+        <service android:name="com.cajama.background.SyncService" />
+        <service android:name="com.cajama.background.UpdateService" />
     </application>
 
 </manifest>
