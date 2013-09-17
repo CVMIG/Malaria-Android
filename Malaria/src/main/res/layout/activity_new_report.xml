@@ -194,11 +194,36 @@
                 android:layout_height="fill_parent"
                 android:padding="50dp">
 
-            <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="8"
-                    />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:id="@+id/relativeLayout"/>
+
+            <TextView
+                android:id="@+id/progressText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please wait"
+                android:layout_marginTop="100dp"
+                android:layout_marginLeft="90dp"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <ProgressBar
+                android:id="@+id/progressbar_default"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="120dp"/>
+
+
+            <ProgressBar
+
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:id="@+id/progressbar_Horizontal"
+                android:max="100" />
+
 
             <EditText
                     android:id="@+id/username"
@@ -217,10 +242,11 @@
                     android:padding="15dp"
                     android:layout_gravity="center"
                     android:hint="Password"/>
-            <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
+            <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:id="@+id/relativeLayout2"
                     />
         </LinearLayout>
     </RelativeLayout>

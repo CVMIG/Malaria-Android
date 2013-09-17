@@ -1,8 +1,11 @@
 package com.cajama.malaria.newreport;
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -20,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -31,6 +35,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.cajama.android.customviews.DateDisplayPicker;
 import com.cajama.background.DataBaseHelper;
+import com.cajama.background.FinalSendingService;
 import com.cajama.malaria.R;
 
 import java.io.File;
@@ -46,6 +51,7 @@ import java.util.List;
 import java.util.Map;
 
 public class NewReportActivity extends SherlockActivity{
+    AssembleData assembleData;
     ViewFlipper VF;
     GridView new_report_photos_layout;
     ImageAdapter images;
@@ -53,18 +59,30 @@ public class NewReportActivity extends SherlockActivity{
     private static final int PHOTO_REQUEST = 4214;
 	private static final String TAG = "NewReportActivity";
 	private Uri fileUri;
-    private String imageFilePath;
+    private String imageFilePath, required = "is a required field.";;
     private int displayedchild;
     private Resources res;
     private String[] step_subtitles;
     ArrayList<String> entryList = new ArrayList<String>();
     ArrayList<String> accountList = new ArrayList<String>();
     ArrayList<Map<String,String>> entries = new ArrayList<Map<String, String>>();
+    Toast userToast, passToast, requiredToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_report);
+
+        userToast = Toast.makeText(getApplicationContext(), "No existing user!", Toast.LENGTH_LONG);
+        passToast = Toast.makeText(getApplicationContext(), "Unmatched username and password!", Toast.LENGTH_LONG);
+        requiredToast = Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG);
+
+        TextView textView = (TextView) findViewById(R.id.progressText);
+        textView.setVisibility(View.INVISIBLE);
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressbar_Horizontal);
+        progressBar.setVisibility(View.INVISIBLE);
+        ProgressBar progressBar1 = (ProgressBar) findViewById(R.id.progressbar_default);
+        progressBar1.setVisibility(View.INVISIBLE);
 
         Spinner spinner = (Spinner) findViewById(R.id.gender_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -160,6 +178,7 @@ public class NewReportActivity extends SherlockActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        removeToasts();
         switch (item.getItemId()) {
             case R.id.action_prev:
                 if (VF.getDisplayedChild() == 0) {
@@ -200,6 +219,7 @@ public class NewReportActivity extends SherlockActivity{
                 }
                 else if(VF.getDisplayedChild() != VF.getChildCount()-1) {
                     if (checkRequiredFields(VF.getDisplayedChild())) VF.showNext();
+                    return false;
                 }
                 else if(VF.getDisplayedChild() == 4){
                     if (checkCredentials()) submitFinishedReport();
@@ -224,8 +244,10 @@ public class NewReportActivity extends SherlockActivity{
         switch (display) {
             case 0:
                 EditText address = (EditText) findViewById(R.id.address);
-                if (address.getText().toString().isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Address is a required field.", Toast.LENGTH_LONG).show();
+                if (address.getText().toString().length() == 0) {
+                    //Toast.makeText(getApplicationContext(), "Address is a required field.", Toast.LENGTH_LONG).show();
+                    requiredToast.setText("Address " + required);
+                    requiredToast.show();
                     return false;
                 }
             default:
@@ -328,7 +350,7 @@ public class NewReportActivity extends SherlockActivity{
     }
 
     private String checkEmpty(String value){
-        if (value.isEmpty()) value = "No input";
+        if (value.length()==0) value = "No input";
         return value;
     }
 
@@ -500,11 +522,44 @@ public class NewReportActivity extends SherlockActivity{
 
         String USERNAME = getAccountData();
 
-        AssembleData assembleData = new AssembleData(getApplicationContext(),entryList,imageList,accountList,USERNAME);
-        assembleData.start();
-
-        finish();
+        assembleData = new AssembleData(getApplicationContext(),entryList,imageList,accountList,USERNAME);
+        TextView textView = (TextView) findViewById(R.id.progressText);
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressbar_Horizontal);
+        assembleData.setView(progressBar, textView);
+        textView.setVisibility(View.VISIBLE);
+        progressBar.setIndeterminate(true);
+        progressBar.setVisibility(View.VISIBLE);
+        Thread assembleDataThread = new Thread(myThread);
+        assembleDataThread.start();
     }
+
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getStringExtra("finish").equals("finish")) finish();
+        }
+    };
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        registerReceiver(broadcastReceiver, new IntentFilter(AssembleData.BROADCAST_FINISH));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterReceiver(broadcastReceiver);
+    }
+
+    private Runnable myThread = new Runnable(){
+
+        @Override
+        public void run()
+        {
+            assembleData.start();
+        }
+    };
 
     private boolean checkCredentials() {
     	byte[] passBytes;
@@ -512,7 +567,7 @@ public class NewReportActivity extends SherlockActivity{
     	
     	DataBaseHelper helper = new DataBaseHelper(this);
     	helper.openDataBase();
-    	
+
         EditText editText1=(EditText )findViewById(R.id.username);
         EditText editText2=(EditText )findViewById(R.id.password);
         USERNAME           =editText1.getText().toString().trim();
@@ -527,7 +582,8 @@ public class NewReportActivity extends SherlockActivity{
             Cursor cursor = helper.getPair(USERNAME);
             
         	if (cursor == null) {
-        		Toast.makeText(getApplicationContext(), "No existing user!", Toast.LENGTH_LONG).show();
+        		//Toast.makeText(getApplicationContext(), "No existing user!", Toast.LENGTH_LONG).show();
+                userToast.show();
         		return false;
         	}
         	
@@ -539,7 +595,8 @@ public class NewReportActivity extends SherlockActivity{
             Log.d(TAG, temp);
 
         	if (!cursor.getString(1).equals(temp)) {
-        		Toast.makeText(getApplicationContext(), "Unmatched username and password!", Toast.LENGTH_LONG).show();
+        		//Toast.makeText(getApplicationContext(), "Unmatched username and password!", Toast.LENGTH_LONG).show();
+                passToast.show();
         		return false;
         	}
         	
@@ -575,4 +632,10 @@ public class NewReportActivity extends SherlockActivity{
 		options.inJustDecodeBounds = false;
 		return BitmapFactory.decodeFile(filepath, options);
 	}
+
+    private void removeToasts() {
+        if (requiredToast.getView().isShown()) requiredToast.cancel();
+        if (userToast.getView().isShown()) userToast.cancel();
+        if (passToast.getView().isShown()) passToast.cancel();
+    }
 }

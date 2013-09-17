@@ -6,10 +6,11 @@
               android:layout_height="match_parent"
         >
 
-    <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
+            android:id="@+id/relativeLayout"
             />
 
     <LinearLayout
@@ -18,10 +19,11 @@
             android:layout_height="match_parent"
             android:layout_weight="4">
 
-        <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/relativeLayout2"
                 />
 
         <LinearLayout
@@ -49,10 +51,11 @@
 
         </LinearLayout>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/relativeLayout3"
             />
 
         <LinearLayout
@@ -80,10 +83,11 @@
                     android:textStyle="bold"/>
         </LinearLayout>
 
-        <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/relativeLayout4"
                 />
 
         <LinearLayout
@@ -111,15 +115,16 @@
                     android:textStyle="bold"/>
         </LinearLayout>
 
-        <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/relativeLayout5"
                 />
     </LinearLayout>
 
-    <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"/>
 </LinearLayout><!-- From: file:/C:/Users/Jasper/AndroidStudioProjects/Malaria-Android2/Malaria/src/main/res/layout/activity_main.xml -->

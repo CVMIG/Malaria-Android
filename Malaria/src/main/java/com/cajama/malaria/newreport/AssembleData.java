@@ -1,9 +1,14 @@
 package com.cajama.malaria.newreport;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
 import android.text.format.Time;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.cajama.malaria.encryption.AES;
 import com.cajama.malaria.encryption.RSA;
@@ -21,10 +26,16 @@ import javax.crypto.spec.SecretKeySpec;
  * Created by GMGA on 8/5/13.
  */
 public class AssembleData {
+    private final Handler handler = new Handler();
+    Intent intentFinish;
+    ProgressBar progressBar;
+    TextView textView;
     ArrayList<String> entryList,fileList, accountData;
     String USERNAME;
     Context c;
+    AES aes;
 
+    public static final String BROADCAST_FINISH = "com.cajama.malaria.newreport.NewReportActivity";
     private static final String PATIENT_TXT_FILENAME = "textData.xml";
     private static final String ACCOUNT_TXT_FILENAME = "accountData.xml";
     private static final String PATIENT_ZIP_FILENAME = "entryData.zip";
@@ -36,6 +47,7 @@ public class AssembleData {
         this.fileList = fileList;
         this.accountData = accountData;
         this.USERNAME = USERNAME;
+        intentFinish = new Intent(BROADCAST_FINISH);
     }
     private String[] getFirstZipArray(){
         try{
@@ -56,7 +68,13 @@ public class AssembleData {
         travelData[1] = c.getExternalFilesDir(null).getPath() + "/" + AES_FILENAME;
         return travelData;
     }
-    public void start(){
+
+    public void setView (ProgressBar progressBar, TextView textView) {
+        this.progressBar = progressBar;
+        this.textView = textView;
+    }
+
+    public void start() {
 
         //create patient details file
         File entryFile = new File (c.getExternalFilesDir(null), PATIENT_TXT_FILENAME);
@@ -81,9 +99,12 @@ public class AssembleData {
 
             //AES encrypt patient zip file
             //Log.v("AES","new AES");
-            AES aes = new AES(secretKey);
+            aes = new AES(secretKey);
+            aes.setLayout(progressBar, textView);
             File AESFile = new File(c.getExternalFilesDir(null),AES_FILENAME);
             aes.encryptAES(zipFile1,AESFile);
+            Thread.sleep(1000);
+            progressBar.setIndeterminate(true);
             Log.v("AES","end AES");
             //decryption test
             /*File test = new File(c.getExternalFilesDir(null),"clearZip.zip");
@@ -116,5 +137,18 @@ public class AssembleData {
         File zipFile2 = new File (c.getExternalFilesDir("ZipFiles"), today.format("%m%d%Y_%H%M%S")+"_"+ USERNAME + ".zip");
         Compress secondZip = new Compress(getSecondZipArray(),zipFile2.getPath());
         secondZip.zip();
+
+        handler.removeCallbacks(finish);
+        handler.postDelayed(finish, 1000);
     }
+
+    private Runnable finish = new Runnable() {
+        @Override
+        public void run() {
+            intentFinish.putExtra("finish", "finish");
+            c.sendBroadcast(intentFinish);
+            handler.postDelayed(this, 5000);
+        }
+    };
+
 }

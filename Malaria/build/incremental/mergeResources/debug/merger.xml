@@ -6619,13 +6619,17 @@ true
             <file
                 path="C:\Users\Jasper\AndroidStudioProjects\Malaria-Android2\Malaria\src\main\res\values\strings.xml"
                 qualifiers="" >
-                <string name="server_address" >http://10.40.93.115/
+                <string name="server_address" >http://befreicafsan.pythonanywhere.com/
                 </string>
                 <string name="title_activity_picture" >PictureActivity
                 </string>
                 <string name="time_sent" >Time Sent
                 </string>
+                <string name="Username" >Username
+                </string>
                 <string name="queued_entries" >Queued Entries
+                </string>
+                <string name="Password" >Password
                 </string>
                 <string name="last_name" >Last Name
                 </string>
@@ -6666,6 +6670,8 @@ true
                 <string name="patient_details" >Patient Details
                 </string>
                 <string name="drugs_given" >Drugs given
+                </string>
+                <string name="progressBarText" >Processing...
                 </string>
                 <string name="home" >Home
                 </string>

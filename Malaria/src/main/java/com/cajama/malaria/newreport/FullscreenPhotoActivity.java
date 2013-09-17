@@ -32,7 +32,14 @@ public class FullscreenPhotoActivity extends SherlockActivity {
 
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
-        display.getSize(size);
+
+        try {
+            display.getSize(size);
+        } catch (java.lang.NoSuchMethodError ignore) { // Older device
+            size.x = display.getWidth();
+            size.y = display.getHeight();
+        }
+
         int width = size.x;
         int height = size.y;
 

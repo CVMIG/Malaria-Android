@@ -1,28 +1,41 @@
 package com.cajama.malaria.entryLogs;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
 
+import com.cajama.background.FinalSendingService;
 import com.cajama.malaria.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class SentLogActivity extends Activity {
     final String TAG = "SentLogActivity";
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sentlog);
+        intent = new Intent(this, FinalSendingService.class);
 
+        updateListView();
+    }
+
+    private void updateListView() {
         File sentLog = new File(String.valueOf(getExternalFilesDir(null)) + "/sent_log.txt");
         Log.d(TAG, sentLog.getPath());
         if (!sentLog.exists()) {
@@ -40,6 +53,8 @@ public class SentLogActivity extends Activity {
 
         try {
             logs = rtf.readText();
+            Collections.reverse(logs);
+
             ArrayList<HashMap> logSet = new ArrayList<HashMap>();
             logSet = getLogSet(logs, logSet);
 
@@ -52,6 +67,26 @@ public class SentLogActivity extends Activity {
         }
     }
 
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getStringExtra("update").equals("update")) updateListView();
+        }
+    };
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        startService(intent);
+        registerReceiver(broadcastReceiver, new IntentFilter(FinalSendingService.BROADCAST_ACTION_SENT));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterReceiver(broadcastReceiver);
+        stopService(intent);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

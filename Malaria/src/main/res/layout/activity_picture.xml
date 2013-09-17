@@ -21,5 +21,7 @@
         android:layout_centerHorizontal="true"
         android:textIsSelectable="false"
         android:textSize="200sp"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:textColor="#00FF00"
+        android:alpha="0.8" />
 </RelativeLayout>

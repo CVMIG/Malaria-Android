@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.AsyncTask.Status;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.IBinder;
 import android.util.Base64;
 import android.util.Log;
@@ -42,22 +43,30 @@ import java.security.MessageDigest;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.RSAPublicKeySpec;
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  * Created by Jasper on 8/4/13.
  */
 public class FinalSendingService extends Service {
     final String TAG = "FinalSendingService";
+    public static final String BROADCAST_ACTION_QUEUE = "com.cajama.malaria.entryLogs.QueueLogActivity";
+    public static final String BROADCAST_ACTION_SENT = "com.cajama.malaria.entryLogs.SentLogActivity";
     String onResult = "";
     SendFileAsyncTask asyncTask;
     File sentList, reportsDirectory;
     File[] reports;
     int count, tries=0;
+    private final Handler handler1 = new Handler();
+    private final Handler handler2 = new Handler();
+    Intent intentQueueLog, intentSentLog;
 
     SendFileAsyncTask.OnAsyncResult onAsyncResult = new SendFileAsyncTask.OnAsyncResult() {
         @Override
         public void onResult(int resultCode, String message) {
             try {
+                handler1.removeCallbacks(sendUpdatesToQueue);
+                handler1.postDelayed(sendUpdatesToQueue, 1000);
                 append_report(resultCode, message);
             } catch (Exception e) {
                 Log.d(TAG, "error!");
@@ -74,6 +83,10 @@ public class FinalSendingService extends Service {
 
     @Override
     public void onCreate() {
+        super.onCreate();
+        intentQueueLog = new Intent(BROADCAST_ACTION_QUEUE);
+        intentSentLog = new Intent(BROADCAST_ACTION_SENT);
+
     	//if (asyncTask.getStatus() == Status.FINISHED || asyncTask.getStatus() == Status.PENDING) {
         asyncTask = new SendFileAsyncTask(getString(R.string.server_address).concat(getString(R.string.api_send)));
         asyncTask.setOnResultListener(onAsyncResult);
@@ -99,6 +112,32 @@ public class FinalSendingService extends Service {
 
         Log.d(TAG, "onCreate()");
         //Toast.makeText(getApplicationContext(), "Sending reports...", Toast.LENGTH_LONG).show();
+    }
+
+    private Runnable sendUpdatesToQueue = new Runnable() {
+        @Override
+        public void run() {
+            updateQueue();
+            handler1.postDelayed(this, 5000);
+        }
+    };
+
+    private Runnable sendUpdatesToSent = new Runnable() {
+        @Override
+        public void run() {
+            updateSent();
+            handler2.postDelayed(this, 5000);
+        }
+    };
+
+    private void updateSent() {
+        intentSentLog.putExtra("update", "update");
+        sendBroadcast(intentSentLog);
+    }
+
+    private void updateQueue() {
+        intentQueueLog.putExtra("update", "update");
+        sendBroadcast(intentQueueLog);
     }
 
     @Override
@@ -132,13 +171,13 @@ public class FinalSendingService extends Service {
             }
 
             else sendFile(count);
-
             return ret;
         }
         else {
-            Toast.makeText(getApplicationContext(), "No internet connection!", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "No internet connection!", Toast.LENGTH_LONG).show();
             Log.d(TAG, "no internet connection");
             //return START_NOT_STICKY;
+            stopSelf();
             return ret;
         }
     }
@@ -189,13 +228,15 @@ public class FinalSendingService extends Service {
             FileWriter fileWriter = new FileWriter(sentList, true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             String[] split = message.split("_");
-            bufferedWriter.write(split[0]+"\n");
-            bufferedWriter.write(split[1]+"\n");
             bufferedWriter.write(split[2].substring(0, split[2].length()-4)+"\n");
+            bufferedWriter.write(split[1]+"\n");
+            bufferedWriter.write(split[0]+"\n");
             bufferedWriter.close();
             Log.d(TAG, message + " added to sent list");
             count++;
             sendFile(count);
+            handler2.removeCallbacks(sendUpdatesToSent);
+            handler2.postDelayed(sendUpdatesToSent, 1000);
         }
         else if (resultCode == -1) {
             startDialog(-1);
@@ -233,7 +274,7 @@ public class FinalSendingService extends Service {
     @Override
     public void onDestroy() {
         Log.d(TAG, "onDestroy()");
-        Toast.makeText(getApplicationContext(), "No more reports to send!", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), "No more reports to send!", Toast.LENGTH_LONG).show();
         /*Intent intent1 = new Intent(getApplicationContext(), FinalSendingService.class);
     	startService(intent1);*/
     }

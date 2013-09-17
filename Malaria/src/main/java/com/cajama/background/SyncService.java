@@ -66,16 +66,12 @@ public class SyncService extends Service {
     public void onCreate() {
     	
     	Log.d(TAG, "SyncService onCreate()");
-    	/*asyncTask1 = new DownloaderAsyncTask("http://10.40.93.115/api/db/", getApplicationContext());
-    	asyncTask1.setOnResultListener(onAsyncResult1);
-    	asyncTask1.execute();*/
     	asyncTask = new SyncDBAsyncTask(getString(R.string.server_address).concat(getString(R.string.api_db)));
     	asyncTask.setOnResultListener(onAsyncResult);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-    	//message1 = "";
     	File dbFile = new File(getApplicationContext().getExternalFilesDir(null), "db.db");
     	try {
 	    	if (!dbFile.exists()) {
@@ -135,7 +131,7 @@ public class SyncService extends Service {
 	        Log.d(TAG, "!!!" + message1);
 	    }
 	    else {
-	        Toast.makeText(getApplicationContext(), "No internet connection!", Toast.LENGTH_LONG).show();
+	        //Toast.makeText(getApplicationContext(), "No internet connection!", Toast.LENGTH_LONG).show();
 	        Log.d(TAG, "no internet connection");
 	    }
     }

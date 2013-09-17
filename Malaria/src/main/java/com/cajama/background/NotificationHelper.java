@@ -91,7 +91,7 @@ public class NotificationHelper {
             default: break;
         }
 
-        Toast.makeText(mContext, toastContent, Toast.LENGTH_LONG).show();
+        //Toast.makeText(mContext, toastContent, Toast.LENGTH_LONG).show();
         /*nh.setContentTitle("Updated Malaria App.");
         nh.setContentText("Complete.");*/
         mNotificationManager.cancel(NOTIFICATION_ID);

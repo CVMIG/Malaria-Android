@@ -528,7 +528,10 @@
     <item name="abs__up" type="id"/>
 
     <integer name="abs__max_action_buttons">2</integer>
-
+    <!-- From: file:/C:/Users/Jasper/AndroidStudioProjects/Malaria-Android2/Malaria/src/main/res/values/strings.xml -->
+    <string name="Password">Password</string>
+    <string name="Username">Username</string>
+    <!-- From: file:/C:/Users/Jasper/AndroidStudioProjects/Malaria-Android2/Malaria/build/exploded-bundles/MalariaAndroid2LibrariesActionBarSherlockActionbarsherlockUnspecified.aar/res/values/values.xml -->
     <string name="abs__action_bar_home_description">Navigate home</string>
     <string name="abs__action_bar_up_description">Navigate up</string>
     <string name="abs__action_menu_overflow_description">More options</string>
@@ -583,11 +586,12 @@
     <string name="password">Password</string>
     <string name="patient_details">Patient Details</string>
     <string name="photo_delete_warning">This photo will be deleted. This action is irreversible.</string>
+    <string name="progressBarText">Processing...</string>
     <string name="queued_entries">Queued Entries</string>
     <string name="region">Region</string>
     <string name="remarks">Remarks</string>
     <string name="sent_entries">Sent Entries</string>
-    <string name="server_address">http://10.40.93.115/</string>
+    <string name="server_address">http://befreicafsan.pythonanywhere.com/</string>
     <string name="sex">Sex</string>
     <string name="slide_number">Slide Number</string>
     <string name="slide_photos">Slide Photos</string>

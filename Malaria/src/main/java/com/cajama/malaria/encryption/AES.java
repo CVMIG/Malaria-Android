@@ -1,10 +1,16 @@
 package com.cajama.malaria.encryption;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import com.cajama.malaria.R;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.logging.LogRecord;
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
@@ -16,7 +22,11 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class AES {
     SecretKeySpec sk;
-    int size;
+    int size, total;
+    //int myProgress;
+    ProgressBar progressBar;
+    TextView textView;
+
     static final String TAG = "SymmetricAlgorithmAES";
     public AES(SecretKeySpec sk){
         this.sk = sk;
@@ -24,8 +34,6 @@ public class AES {
 
     public void encryptAES(File clearTextFile, File cipherTextFile){
         Log.v(TAG,"Start encryption");
-
-
 
         try{
             Cipher cipher = Cipher.getInstance("AES");
@@ -39,7 +47,11 @@ public class AES {
             Log.v(TAG,"Streams created");
             long startTime = System.currentTimeMillis();
             byte[] block = new byte[262144];
+            total = fis.available();
+            progressBar.setIndeterminate(false);
+            Thread.sleep(1000);
             while ((size = fis.read(block)) != -1) {
+                progressBar.setProgress((int) (100 - ((fis.available()/(float)total) * 100)));
                 cos.write(block, 0, size);
                 Log.v("AES","Size:"+String.valueOf(fis.available()));
             }
@@ -68,4 +80,16 @@ public class AES {
         } catch (Exception e){  Log.v(TAG,"AES decryption error"); }
     }
 
+    /*public void setSize(int total) {
+        this.total = total;
+    }
+
+    public int getSize() {
+        return total;
+    }*/
+
+    public void setLayout (ProgressBar progressBar, TextView textView) {
+        this.progressBar = progressBar;
+        this.textView = textView;
+    }
 }

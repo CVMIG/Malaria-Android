@@ -56,7 +56,7 @@ public class UpdateService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
-        Toast.makeText(this, TAG + " Started", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, TAG + " Started", Toast.LENGTH_LONG).show();
 
         try {
             PackageInfo info = getPackageManager().getPackageInfo(this.getPackageName(), 0);
@@ -65,7 +65,7 @@ public class UpdateService extends Service {
             if (internetAvailable()) new DownloadApkAsyncTask(getApplicationContext()).execute(new URL(getString(R.string.server_address).concat(getString(R.string.api_apk))));
             else {
                 Log.d(TAG, "no internet");
-                Toast.makeText(this, "No internet connection", Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, "No internet connection", Toast.LENGTH_LONG).show();
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -173,7 +173,7 @@ public class UpdateService extends Service {
                     Log.d(TAG, split[split.length-1]);
 
                     File file = new File(Environment.getExternalStorageDirectory() + "/Android/data/com.cajama.malaria/files/", split[split.length-1]);
-
+                    //File file = new File(getApplicationContext().getExternalFilesDir(null), split[split.length-1]);
                     if (file.exists()) file.delete();
                     file.createNewFile();
 
