@@ -26,7 +26,7 @@ import javax.crypto.spec.SecretKeySpec;
  * Created by GMGA on 8/5/13.
  */
 public class AssembleData {
-    private final Handler handler = new Handler();
+    private Handler handler = new Handler();
     Intent intentFinish;
     ProgressBar progressBar;
     TextView textView;
@@ -147,7 +147,6 @@ public class AssembleData {
         public void run() {
             intentFinish.putExtra("finish", "finish");
             c.sendBroadcast(intentFinish);
-            handler.postDelayed(this, 5000);
         }
     };
 

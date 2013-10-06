@@ -152,7 +152,7 @@ public class FinalSendingService extends Service {
 
         if (isConnected()) {
             Log.d(TAG, "may internet!");
-            if (!result.isEmpty()) {
+            if (!(result.length() == 0)) {
                 try {
                     String[] split = result.split("\n");
                     byte[] skByte = split[1].getBytes();
@@ -269,14 +269,6 @@ public class FinalSendingService extends Service {
     public void sendNext() {
         count++;
         sendFile(count);
-    }
-
-    @Override
-    public void onDestroy() {
-        Log.d(TAG, "onDestroy()");
-        //Toast.makeText(getApplicationContext(), "No more reports to send!", Toast.LENGTH_LONG).show();
-        /*Intent intent1 = new Intent(getApplicationContext(), FinalSendingService.class);
-    	startService(intent1);*/
     }
 
     public boolean isConnected() {

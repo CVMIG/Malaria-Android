@@ -219,7 +219,7 @@ public class NewReportActivity extends SherlockActivity{
                 }
                 else if(VF.getDisplayedChild() != VF.getChildCount()-1) {
                     if (checkRequiredFields(VF.getDisplayedChild())) VF.showNext();
-                    return false;
+                    //return false;
                 }
                 else if(VF.getDisplayedChild() == 4){
                     if (checkCredentials()) submitFinishedReport();
@@ -536,6 +536,7 @@ public class NewReportActivity extends SherlockActivity{
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.d(TAG, "asdasdasd");
             if (intent.getStringExtra("finish").equals("finish")) finish();
         }
     };

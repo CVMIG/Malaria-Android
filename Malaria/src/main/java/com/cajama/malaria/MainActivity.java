@@ -9,6 +9,7 @@ import android.view.View;
 import com.cajama.background.DialogActivity;
 import com.cajama.background.FinalSendingService;
 import com.cajama.background.SyncService;
+import com.cajama.background.TestSendService;
 import com.cajama.background.UpdateService;
 import com.cajama.malaria.entryLogs.QueueLogActivity;
 import com.cajama.malaria.entryLogs.SentLogActivity;

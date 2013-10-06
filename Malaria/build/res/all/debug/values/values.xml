@@ -586,12 +586,12 @@
     <string name="password">Password</string>
     <string name="patient_details">Patient Details</string>
     <string name="photo_delete_warning">This photo will be deleted. This action is irreversible.</string>
-    <string name="progressBarText">Processing...</string>
+    <string name="progressBarText">Processing... </string>
     <string name="queued_entries">Queued Entries</string>
     <string name="region">Region</string>
     <string name="remarks">Remarks</string>
     <string name="sent_entries">Sent Entries</string>
-    <string name="server_address">http://befreicafsan.pythonanywhere.com/</string>
+    <string name="server_address">http://192.168.43.91/</string>
     <string name="sex">Sex</string>
     <string name="slide_number">Slide Number</string>
     <string name="slide_photos">Slide Photos</string>

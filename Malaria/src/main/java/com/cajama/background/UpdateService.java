@@ -93,7 +93,6 @@ public class UpdateService extends Service {
 
         public DownloadApkAsyncTask(Context context) {
             nh = new NotificationHelper(context);
-            nh.createNotification(1);
         }
 
         @Override
@@ -115,13 +114,14 @@ public class UpdateService extends Service {
             //nh.completed();
             Log.d(TAG, "asynctask done!");
             if (intent != null) {
+                nh.createNotification(1);
                 Log.d(TAG, "may update na i-install");
                 startActivity(intent);
+                nh.completed(1);
             }
             else {
                 Log.d(TAG, "di kelangan i-update");
             }
-            nh.completed(1);
         }
 
         public Intent Update(URL apkurl){

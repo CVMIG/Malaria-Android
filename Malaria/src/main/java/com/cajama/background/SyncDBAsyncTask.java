@@ -93,7 +93,7 @@ public class SyncDBAsyncTask extends AsyncTask<String, Void, String> {
             if (sb.toString().trim().equals("OK")) {
             	onAsyncResult.onResult(0, "updated");
             }
-            else if (sb.toString().trim().startsWith("<")) onAsyncResult.onResult(-1, "failed");
+            //else if (sb.toString().trim().startsWith("<")) onAsyncResult.onResult(-1, "failed");
             else onAsyncResult.onResult(1, sb.toString().trim());
 
         } catch (Exception e) {

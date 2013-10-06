@@ -101,7 +101,7 @@
     <string name="address">Address</string>
     <string name="title_activity_picture">PictureActivity</string>
 
-    <string name="server_address">http://befreicafsan.pythonanywhere.com/</string>
+    <string name="server_address">http://192.168.43.91/</string>
     <!--<string name="server_address">http://10.40.93.115/</string>-->
     <string name="api_key">api/key/</string>
     <string name="api_send">api/send/</string>
