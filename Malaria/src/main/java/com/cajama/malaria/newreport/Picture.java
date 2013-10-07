@@ -252,13 +252,16 @@ public class Picture extends SherlockActivity {
         @Override
         protected String doInBackground(byte[]... jpeg) {
             File photo= new File(path);
+            Log.d("PictureDemo", path);
             if (photo.exists()) {
+                Log.d("PictureDemo", "photo exists");
                 photo.delete();
             }
             try {
                 FileOutputStream fos=new FileOutputStream(photo.getPath());
-                fos.write(jpeg[0]);
+                fos.write(jpeg[0], 0, jpeg[0].length);
                 fos.close();
+                Log.d("PictureDemo", String.valueOf(jpeg[0].length));
             }
             catch (java.io.IOException e) {
                 Log.e("PictureDemo", "Exception in photoCallback", e);

@@ -6938,6 +6938,11 @@ center
                 path="C:\Users\Jasper\AndroidStudioProjects\Malaria-Android2\Malaria\src\main\res\drawable-hdpi\test.png"
                 qualifiers="hdpi"
                 type="drawable" />
+            <file
+                name="icon2"
+                path="C:\Users\Jasper\AndroidStudioProjects\Malaria-Android2\Malaria\src\main\res\drawable-hdpi\icon2.png"
+                qualifiers="hdpi"
+                type="drawable" />
         </source>
         <source path="C:\Users\Jasper\AndroidStudioProjects\Malaria-Android2\Malaria\build\res\rs\debug" />
     </dataSet>

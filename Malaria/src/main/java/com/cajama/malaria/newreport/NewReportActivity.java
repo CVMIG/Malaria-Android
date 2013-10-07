@@ -18,6 +18,7 @@ import android.text.format.Time;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -213,6 +214,8 @@ public class NewReportActivity extends SherlockActivity{
                 return true;
             case R.id.action_next:
                 //invalidateOptionsMenu();
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(VF.getWindowToken(), 0);
                 if(VF.getDisplayedChild() == 2){
                     generateSummary();
                     VF.showNext();
@@ -288,8 +291,10 @@ public class NewReportActivity extends SherlockActivity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
         	String newimagepath = ((Uri) data.getParcelableExtra(android.provider.MediaStore.EXTRA_OUTPUT)).getPath();
+            Log.d(TAG, newimagepath);
             File f = new File(newimagepath);
             if(f.exists()) {
+                Log.d(TAG, "newimagepath exists");
 
                 Bitmap bmp = null;
 
@@ -304,6 +309,7 @@ public class NewReportActivity extends SherlockActivity{
                 images.notifyDataSetChanged();
             }
         } else if (requestCode == PHOTO_REQUEST && resultCode == RESULT_OK) {
+            Log.d(TAG, "photo request");
             int pos = data.getIntExtra("pos", -1);
 
             if (pos != -1 ){
@@ -313,7 +319,7 @@ public class NewReportActivity extends SherlockActivity{
                 images.remove(pos);
                 images.notifyDataSetChanged();
             }
-        }
+        } else Log.d(TAG, "wala sa cases");
     }
 
     @Override
