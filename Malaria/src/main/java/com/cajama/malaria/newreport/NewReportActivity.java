@@ -356,7 +356,7 @@ public class NewReportActivity extends SherlockActivity{
     }
 
     private String checkEmpty(String value){
-        if (value.length()==0) value = "No input";
+        if (value.length()==0) value = getString(R.string.no_input);
         return value;
     }
 

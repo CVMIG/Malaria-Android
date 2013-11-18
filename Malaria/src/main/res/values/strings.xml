@@ -111,4 +111,32 @@
     <string name="Username">Username</string>
     <string name="Password">Password</string>
     <string name="progressBarText">Processing... </string>
+
+
+    <!-- Settings Strings -->
+    <string name="category_title_1">LANGUAGE</string>
+    <string name="category_title_2">CONNECTIVITY</string>
+    <string name="checkbox_text"></string>
+    <string name="language_pref">language</string>
+    <string name="language_title">Locale</string>
+    <string name="language_summary">Choose a preferred language</string>
+    <string name="connection_pref">connection_address</string>
+    <string name="connection_summary">Define where the app connects</string>
+    <string name="connection_dialog_title">Provide a valid Server Address</string>
+    <string name="no_input">No input</string>
+    <string name="settings_pref">open_settings_page</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_summary">Open System Settings and change locale</string>
+
+    <string-array name="language">
+        <item>English (United States)</item>
+        <item>Filipino</item>
+        <item>Cebuano</item>
+    </string-array>
+
+    <string-array name="language_values">
+        <item>en</item>
+        <item>tl</item>
+        <item>tl-rPH</item>
+    </string-array>
 </resources>

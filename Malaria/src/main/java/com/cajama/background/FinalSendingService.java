@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -88,7 +89,7 @@ public class FinalSendingService extends Service {
         intentSentLog = new Intent(BROADCAST_ACTION_SENT);
 
     	//if (asyncTask.getStatus() == Status.FINISHED || asyncTask.getStatus() == Status.PENDING) {
-        asyncTask = new SendFileAsyncTask(getString(R.string.server_address).concat(getString(R.string.api_send)));
+        asyncTask = new SendFileAsyncTask(PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.connection_pref), getString(R.string.server_address)).concat(getString(R.string.api_send)));
         asyncTask.setOnResultListener(onAsyncResult);
     	//}
     	
@@ -280,7 +281,7 @@ public class FinalSendingService extends Service {
     }
 
     public class PostStringAsyncTask extends AsyncTask<String, Void, String> {
-        String url = getString(R.string.server_address).concat(getString(R.string.api_retry));
+        String url = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString(getString(R.string.connection_pref), getString(R.string.server_address)).concat(getString(R.string.api_retry));
 
         @Override
         protected String doInBackground(String... strings) {

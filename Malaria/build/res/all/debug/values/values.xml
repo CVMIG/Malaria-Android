@@ -10,6 +10,16 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+    <string-array name="language">
+        <item>English (United States)</item>
+        <item>Filipino</item>
+        <item>Cebuano</item>
+    </string-array>
+    <string-array name="language_values">
+        <item>en</item>
+        <item>tl</item>
+        <item>tl-rPH</item>
+    </string-array>
     <string-array name="region_array">
         <item>NCR (National Capital Region)</item>
         <item>CAR (Cordillera Administrative Region)</item>
@@ -560,6 +570,12 @@
     <string name="birthday">Birthday</string>
     <string name="cancel">Cancel</string>
     <string name="case_malaria">Case</string>
+    <string name="category_title_1">LANGUAGE</string>
+    <string name="category_title_2">CONNECTIVITY</string>
+    <string name="checkbox_text"></string>
+    <string name="connection_dialog_title">Provide a valid Server Address</string>
+    <string name="connection_pref">connection_address</string>
+    <string name="connection_summary">Define where the app connects</string>
     <string name="date_created">Date Created</string>
     <string name="date_sent">Date Sent</string>
     <string name="delete">Delete</string>
@@ -573,6 +589,9 @@
     <string name="given_name">Given Name</string>
     <string name="hello_world">Hello world!</string>
     <string name="home">Home</string>
+    <string name="language_pref">language</string>
+    <string name="language_summary">Choose a preferred language</string>
+    <string name="language_title">Locale</string>
     <string name="last_name">Last Name</string>
     <string name="latitude">Latitude</string>
     <string name="login">Login</string>
@@ -581,6 +600,7 @@
     <string name="new_entry">New Entry</string>
     <string name="new_report_cancel_warning">This report will be discarded. All progress including photos will be lost.</string>
     <string name="next">Next</string>
+    <string name="no_input">No input</string>
     <string name="num_photos">No. of Photos</string>
     <string name="ok">OK</string>
     <string name="password">Password</string>
@@ -592,6 +612,9 @@
     <string name="remarks">Remarks</string>
     <string name="sent_entries">Sent Entries</string>
     <string name="server_address">http://192.168.43.91/</string>
+    <string name="settings_pref">open_settings_page</string>
+    <string name="settings_summary">Open System Settings and change locale</string>
+    <string name="settings_title">Settings</string>
     <string name="sex">Sex</string>
     <string name="slide_number">Slide Number</string>
     <string name="slide_photos">Slide Photos</string>

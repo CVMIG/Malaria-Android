@@ -1,9 +1,16 @@
 package com.cajama.malaria;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.cajama.background.DialogActivity;
@@ -15,7 +22,15 @@ import com.cajama.malaria.entryLogs.QueueLogActivity;
 import com.cajama.malaria.entryLogs.SentLogActivity;
 import com.cajama.malaria.newreport.NewReportActivity;
 
+import java.util.Locale;
+import android.os.Handler;
+import java.util.logging.LogRecord;
+
 public class MainActivity extends Activity {
+
+    private static final int UPDATE_SETTINGS = 1001;
+    final Activity ctx = this;
+    private Handler messageHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +51,17 @@ public class MainActivity extends Activity {
         return true;
     }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.action_settings:
+                Intent settings = new Intent(this, SettingsActivity.class);
+                startActivityForResult(settings, UPDATE_SETTINGS);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     public void submitNewReport(View view) {
         Intent intent = new Intent(this, NewReportActivity.class);
         startActivity(intent);
@@ -53,4 +79,28 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    @Override
+    public void onActivityResult(int request, int result, Intent data) {
+        messageHandler.postDelayed(recreate, 0);
+    }
+
+    private Runnable recreate = new Runnable() {
+        @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+        @Override
+        public void run() {
+            ctx.recreate();
+            Log.w("Handler...", "Recreate requested.");
+        }
+    };
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
 }

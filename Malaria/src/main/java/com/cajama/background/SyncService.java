@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.AsyncTask.Status;
 import android.os.Environment;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
@@ -66,7 +67,7 @@ public class SyncService extends Service {
     public void onCreate() {
     	
     	Log.d(TAG, "SyncService onCreate()");
-    	asyncTask = new SyncDBAsyncTask(getString(R.string.server_address).concat(getString(R.string.api_db)));
+    	asyncTask = new SyncDBAsyncTask(PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.connection_pref), getString(R.string.server_address)).concat(getString(R.string.api_db)));
     	asyncTask.setOnResultListener(onAsyncResult);
     }
 

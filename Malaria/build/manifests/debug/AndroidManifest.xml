@@ -37,6 +37,7 @@
         <activity android:label="@string/title_activity_picture" android:name="com.cajama.malaria.newreport.Picture">
         </activity>
         <activity android:label="InputDialog" android:name="com.cajama.background.DialogActivity" android:theme="@android:style/Theme.Dialog"/>
+        <activity android:label="Settings" android:name="com.cajama.malaria.SettingsActivity"/>
         <service android:name="com.cajama.background.FinalSendingService"/>
         <service android:name="com.cajama.background.SyncService"/>
         <service android:name="com.cajama.background.UpdateService"/>

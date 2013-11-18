@@ -15,54 +15,10 @@
         android:layout_height="fill_parent"
         android:padding="50dp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon"
-            android:id="@+id/imageView"
-            android:layout_weight="8" />
-
         <TextView
-            android:id="@+id/progressText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Processing..."
-            android:layout_marginTop="100dp"
-            android:layout_marginLeft="90dp"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <ProgressBar
-
+            android:id="@+id/settings_text_view"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:id="@+id/progressbar_Horizontal"
-            android:max="100" />
-
-
-        <EditText
-            android:id="@+id/username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:singleLine="true"
-            android:hint="Username"/>
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:padding="15dp"
-            android:layout_gravity="center"
-            android:hint="Password"/>
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/relativeLayout2"
-            />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 
