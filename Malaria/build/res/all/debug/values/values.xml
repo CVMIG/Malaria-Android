@@ -7,8 +7,8 @@
         <item>Severe</item>
     </string-array>
     <string-array name="gender_array">
-        <item>Male</item>
-        <item>Female</item>
+        <item>Male (Lalaki)</item>
+        <item>Female (Babae)</item>
     </string-array>
     <string-array name="language">
         <item>English (United States)</item>
@@ -557,9 +557,9 @@
     <string name="abs__shareactionprovider_share_with_application">Share with <ns1:g id="application_name" example="Bluetooth">%s</ns1:g></string>
     <!-- From: file:/C:/Users/Jasper/AndroidStudioProjects/Malaria-Android2/Malaria/src/main/res/values/strings.xml -->
     <string name="action_settings">Settings</string>
-    <string name="add_new_photo">Add New Photo</string>
+    <string name="add_new_photo">Add New Photo\n(Dagdag ng bagong Photo)</string>
     <string name="address">Address</string>
-    <string name="age">Age</string>
+    <string name="age">Age\n(Edad)</string>
     <string name="api_apk">api/apk/</string>
     <string name="api_db">api/db/</string>
     <string name="api_key">api/key/</string>
@@ -567,7 +567,7 @@
     <string name="api_send">api/send/</string>
     <string name="app_name">Malaria</string>
     <string name="back">Back</string>
-    <string name="birthday">Birthday</string>
+    <string name="birthday">Birthday\n(Kaarawan)</string>
     <string name="cancel">Cancel</string>
     <string name="case_malaria">Case</string>
     <string name="category_title_1">LANGUAGE</string>
@@ -578,11 +578,11 @@
     <string name="connection_summary">Define where the app connects</string>
     <string name="date_created">Date Created</string>
     <string name="date_sent">Date Sent</string>
-    <string name="delete">Delete</string>
-    <string name="delete_photo">Delete Photo</string>
+    <string name="delete">Delete\n(Burahin)</string>
+    <string name="delete_photo">Delete Photo\n(Burahin ang Photo)</string>
     <string name="diagnosis">Diagnosis</string>
     <string name="drugs_given">Drugs given</string>
-    <string name="empty_photos_message">Click the camera icon to add a new photo.</string>
+    <string name="empty_photos_message">Click the camera icon to add a new photo.\n(Pindutin ang camera icon para kumuha ng bagong photo.)</string>
     <string name="entry_name">Entry Name</string>
     <string name="exam_result">Exam result</string>
     <string name="get_treatment">Get Treatment</string>
@@ -597,44 +597,44 @@
     <string name="login">Login</string>
     <string name="longitude">Longitude</string>
     <string name="middle_name">Middle Name</string>
-    <string name="new_entry">New Entry</string>
-    <string name="new_report_cancel_warning">This report will be discarded. All progress including photos will be lost.</string>
+    <string name="new_entry">New Entry\n(Bagong Entry)</string>
+    <string name="new_report_cancel_warning">This report will be discarded. All progress including photos will be lost.\n\n(Ang report na ito ay mabubura. Lahat ay mawawala kasama na ang mga photos.)</string>
     <string name="next">Next</string>
     <string name="no_input">No input</string>
-    <string name="num_photos">No. of Photos</string>
+    <string name="num_photos">No. of Photos (Bilang ng Photos)</string>
     <string name="ok">OK</string>
     <string name="password">Password</string>
     <string name="patient_details">Patient Details</string>
-    <string name="photo_delete_warning">This photo will be deleted. This action is irreversible.</string>
+    <string name="photo_delete_warning">This photo will be deleted. This action is irreversible.\n\n(Ang photo na ito ay mabubura. Hindi na ito maibabalik.)</string>
     <string name="progressBarText">Processing... </string>
-    <string name="queued_entries">Queued Entries</string>
+    <string name="queued_entries">Queued Entries\n(Nakapilang Entries)</string>
     <string name="region">Region</string>
     <string name="remarks">Remarks</string>
-    <string name="sent_entries">Sent Entries</string>
+    <string name="sent_entries">Sent Entries\n(Naipadalang Entries)</string>
     <string name="server_address">http://192.168.43.91/</string>
     <string name="settings_pref">open_settings_page</string>
     <string name="settings_summary">Open System Settings and change locale</string>
     <string name="settings_title">Settings</string>
-    <string name="sex">Sex</string>
+    <string name="sex">Sex\n(Kasarian)</string>
     <string name="slide_number">Slide Number</string>
     <string name="slide_photos">Slide Photos</string>
     <string name="submit">Submit</string>
     <string name="submit_new_report">Submit New Report</string>
     <string name="summary">Summary</string>
-    <string name="take_photo">Take Photo</string>
+    <string name="take_photo">Take Photo\n(Kumuha ng Photo)</string>
     <string name="time_created">Time Created</string>
     <string name="time_sent">Time Sent</string>
     <string name="title_activity_fullscreen_photo"></string>
     <string name="title_activity_log_in">LogInActivity</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_new_report">Submit New Report</string>
-    <string name="title_activity_new_report_patient_details">New Report</string>
+    <string name="title_activity_new_report_patient_details">New Report\n(Bagong Report)</string>
     <string name="title_activity_picture">PictureActivity</string>
     <string name="title_activity_queue_log">Queued Entries</string>
     <string name="title_activity_sent_log">Sent Entries</string>
     <string name="treatment">Treatment</string>
     <string name="username">Username</string>
-    <string name="warning">Warning</string>
+    <string name="warning">Warning (Babala)</string>
     <!-- From: file:/C:/Users/Jasper/AndroidStudioProjects/Malaria-Android2/Malaria/src/main/res/values/styles.xml -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--

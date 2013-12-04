@@ -3,27 +3,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
               android:layout_height="match_parent"
-              android:padding="20px">
+              android:padding="20px"
+    android:orientation="horizontal">
     <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_gravity="left"
-            android:id="@+id/label"/>
-    <TextView
+        android:id="@+id/label"
+        android:textSize="20dp"
+        android:layout_gravity="center_vertical" />
+    <!--<TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_gravity="left"
-            android:text="  "
-            android:id="@+id/tab"/>
-
+        android:text="  "
+            android:id="@+id/tab" />-->
     <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:layout_gravity="right"
-            android:id="@+id/value"/>
+        android:id="@+id/value"
+        android:textSize="20dp"
+        android:layout_gravity="center_vertical" />
 
 </LinearLayout><!-- From: file:/C:/Users/Jasper/AndroidStudioProjects/Malaria-Android2/Malaria/src/main/res/layout/summary_row.xml -->

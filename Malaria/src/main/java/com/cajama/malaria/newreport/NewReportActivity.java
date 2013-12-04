@@ -82,14 +82,17 @@ public class NewReportActivity extends SherlockActivity{
         textView.setVisibility(View.INVISIBLE);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressbar_Horizontal);
         progressBar.setVisibility(View.INVISIBLE);
-        ProgressBar progressBar1 = (ProgressBar) findViewById(R.id.progressbar_default);
-        progressBar1.setVisibility(View.INVISIBLE);
+        /*ProgressBar progressBar1 = (ProgressBar) findViewById(R.id.progressbar_default);
+        progressBar1.setVisibility(View.INVISIBLE);*/
 
-        Spinner spinner = (Spinner) findViewById(R.id.gender_spinner);
+        /*Spinner spinner = (Spinner) findViewById(R.id.gender_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.gender_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        spinner.setAdapter(adapter);*/
+
+        Spinner spinner = (Spinner) findViewById(R.id.gender_spinner);
+        spinner.setAdapter(new CustomAdapter(NewReportActivity.this, R.layout.row, getResources().getStringArray(R.array.gender_array)));
 
         Spinner spinner2 = (Spinner) findViewById(R.id.species_spinner);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
@@ -104,10 +107,10 @@ public class NewReportActivity extends SherlockActivity{
         spinner3.setAdapter(adapter3);
 
         Spinner spinner4 = (Spinner) findViewById(R.id.region_spinner);
-        ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this,
-                R.array.region_array, android.R.layout.simple_spinner_item);
-        adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner4.setAdapter(adapter4);
+        spinner4.setAdapter(new CustomAdapter(NewReportActivity.this, R.layout.row, getResources().getStringArray(R.array.region_array)));
+        //ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this,R.array.region_array, android.R.layout.simple_spinner_item);
+        //adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //spinner4.setAdapter(adapter4);
 
 
         VF = (ViewFlipper) findViewById(R.id.viewFlipper);
@@ -132,6 +135,8 @@ public class NewReportActivity extends SherlockActivity{
         res = getResources();
         step_subtitles = new String[]{
                 res.getString(R.string.patient_details),
+                res.getString(R.string.patient_details),
+                res.getString(R.string.patient_details),
                 res.getString(R.string.slide_photos),
                 res.getString(R.string.diagnosis),
                 res.getString(R.string.summary),
@@ -150,7 +155,7 @@ public class NewReportActivity extends SherlockActivity{
                     menu.findItem(R.id.action_next).setTitle(R.string.next);
                     break;
             case 1: menu.findItem(R.id.action_prev).setTitle(R.string.back);
-                    menu.findItem(R.id.action_photo).setVisible(true);
+                    menu.findItem(R.id.action_photo).setVisible(false);
                     menu.findItem(R.id.action_next).setTitle(R.string.next);
                     break;
             case 2: menu.findItem(R.id.action_prev).setTitle(R.string.back);
@@ -158,10 +163,18 @@ public class NewReportActivity extends SherlockActivity{
                     menu.findItem(R.id.action_next).setTitle(R.string.next);
                     break;
             case 3: menu.findItem(R.id.action_prev).setTitle(R.string.back);
-                    menu.findItem(R.id.action_photo).setVisible(false);
+                    menu.findItem(R.id.action_photo).setVisible(true);
                     menu.findItem(R.id.action_next).setTitle(R.string.next);
                     break;
             case 4: menu.findItem(R.id.action_prev).setTitle(R.string.back);
+                    menu.findItem(R.id.action_photo).setVisible(false);
+                    menu.findItem(R.id.action_next).setTitle(R.string.next);
+                    break;
+            case 5: menu.findItem(R.id.action_prev).setTitle(R.string.back);
+                    menu.findItem(R.id.action_photo).setVisible(false);
+                    menu.findItem(R.id.action_next).setTitle(R.string.next);
+                    break;
+            case 6: menu.findItem(R.id.action_prev).setTitle(R.string.back);
                     menu.findItem(R.id.action_photo).setVisible(false);
                     menu.findItem(R.id.action_next).setTitle(R.string.submit);
                     break;
@@ -216,7 +229,7 @@ public class NewReportActivity extends SherlockActivity{
                 //invalidateOptionsMenu();
                 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(VF.getWindowToken(), 0);
-                if(VF.getDisplayedChild() == 2){
+                if(VF.getDisplayedChild() == 4){
                     generateSummary();
                     VF.showNext();
                 }
@@ -224,12 +237,13 @@ public class NewReportActivity extends SherlockActivity{
                     if (checkRequiredFields(VF.getDisplayedChild())) VF.showNext();
                     //return false;
                 }
-                else if(VF.getDisplayedChild() == 4){
+                else if(VF.getDisplayedChild() == VF.getChildCount()-1){
                     if (checkCredentials()) submitFinishedReport();
                 }
                 invalidateOptionsMenu();
                 return true;
             case R.id.action_photo:
+                System.out.println("asdfasdf");
             	Intent cameraIntent = new Intent(this, Picture.class);
                 String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
                 imageFilePath = getExternalFilesDir(Environment.DIRECTORY_PICTURES) +  "/" + timeStamp + "_slide.jpg";
@@ -245,9 +259,9 @@ public class NewReportActivity extends SherlockActivity{
 
     private boolean checkRequiredFields(int display) {
         switch (display) {
-            case 0:
+            case 2:
                 EditText address = (EditText) findViewById(R.id.address);
-                if (address.getText().toString().length() == 0) {
+                if (address.getText().toString().trim().length() == 0) {
                     //Toast.makeText(getApplicationContext(), "Address is a required field.", Toast.LENGTH_LONG).show();
                     requiredToast.setText("Address " + required);
                     requiredToast.show();
