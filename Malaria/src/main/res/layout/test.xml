@@ -2,22 +2,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="wrap_content">
 
     <ScrollView android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
         android:id="@+id/fifth_flip"
-        android:fillViewport="true"
-        android:padding="50dp">
+        android:fillViewport="true">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:measureWithLargestChild="false"
-            android:baselineAligned="false"
-            android:weightSum="3">
+            android:weightSum="3"
+            android:padding="20dp">
 
             <RelativeLayout
                 android:layout_width="fill_parent"
@@ -81,4 +79,5 @@
         </LinearLayout>
 
     </ScrollView>
+
 </LinearLayout>

@@ -13,14 +13,11 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.text.format.Time;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListView;
@@ -36,19 +33,16 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.cajama.android.customviews.DateDisplayPicker;
 import com.cajama.background.DataBaseHelper;
-import com.cajama.background.FinalSendingService;
 import com.cajama.malaria.R;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class NewReportActivity extends SherlockActivity{
@@ -68,6 +62,7 @@ public class NewReportActivity extends SherlockActivity{
     ArrayList<String> accountList = new ArrayList<String>();
     ArrayList<Map<String,String>> entries = new ArrayList<Map<String, String>>();
     Toast userToast, passToast, requiredToast;
+    boolean isCancelDialogOpen = false, isDeleteDialogOpen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,17 +89,59 @@ public class NewReportActivity extends SherlockActivity{
         Spinner spinner = (Spinner) findViewById(R.id.gender_spinner);
         spinner.setAdapter(new CustomAdapter(NewReportActivity.this, R.layout.row, getResources().getStringArray(R.array.gender_array)));
 
-        Spinner spinner2 = (Spinner) findViewById(R.id.species_spinner);
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
+        final Spinner spinner2 = (Spinner) findViewById(R.id.species_spinner);
+        spinner2.setSelection(4);
+        final Spinner spinner3 = (Spinner) findViewById(R.id.case_spinner);
+        spinner2.setAdapter(new CustomAdapter(NewReportActivity.this, R.layout.diagnosis_row, getResources().getStringArray(R.array.species_array)));
+
+        AdapterView.OnItemSelectedListener listener1 = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (getResources().getStringArray(R.array.species_array)[i].equalsIgnoreCase("none")) {
+                    spinner3.setSelection(0);
+                    spinner2.setEnabled(false);
+                    spinner2.setClickable(false);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        };
+        spinner2.setOnItemSelectedListener(listener1);
+        /*ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
                 R.array.species_array, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner2.setAdapter(adapter2);
+        spinner2.setAdapter(adapter2);*/
+        spinner3.setAdapter(new CustomAdapter(NewReportActivity.this, R.layout.row, getResources().getStringArray(R.array.case_array)));
 
-        Spinner spinner3 = (Spinner) findViewById(R.id.case_spinner);
-        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
+        AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (getResources().getStringArray(R.array.case_array)[i].equalsIgnoreCase("uncomplicated")) {
+                    spinner2.setSelection(4);
+                    spinner2.setEnabled(false);
+                    spinner2.setClickable(false);
+                }
+                else {
+                    spinner2.setEnabled(true);
+                    spinner2.setClickable(true);
+                    spinner2.setSelection(0);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        };
+        spinner3.setOnItemSelectedListener(listener);
+        spinner3.setSelection(1);
+        /*ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
                 R.array.case_array, android.R.layout.simple_spinner_item);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner3.setAdapter(adapter3);
+        spinner3.setAdapter(adapter3);*/
 
         Spinner spinner4 = (Spinner) findViewById(R.id.region_spinner);
         spinner4.setAdapter(new CustomAdapter(NewReportActivity.this, R.layout.row, getResources().getStringArray(R.array.region_array)));
@@ -193,6 +230,8 @@ public class NewReportActivity extends SherlockActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         removeToasts();
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(VF.getWindowToken(), 0);
         switch (item.getItemId()) {
             case R.id.action_prev:
                 if (VF.getDisplayedChild() == 0) {
@@ -208,18 +247,23 @@ public class NewReportActivity extends SherlockActivity{
                                         file.delete();
                                     }
 
+                                    isCancelDialogOpen = false;
                                     finish();
                                 }
                             })
                             .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int id) {
+                                    isCancelDialogOpen = false;
                                     dialog.cancel();
                                 }
                             });
 
                     AlertDialog alertDialog = alertDialogBuilder.create();
 
-                    alertDialog.show();
+                    if (!isCancelDialogOpen) {
+                        isCancelDialogOpen = true;
+                        alertDialog.show();
+                    }
                 } else {
                     VF.showPrevious();
                 }
@@ -227,8 +271,8 @@ public class NewReportActivity extends SherlockActivity{
                 return true;
             case R.id.action_next:
                 //invalidateOptionsMenu();
-                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(VF.getWindowToken(), 0);
+                /*InputMethodManager imm1 = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm1.hideSoftInputFromWindow(VF.getWindowToken(), 0);*/
                 if(VF.getDisplayedChild() == 4){
                     generateSummary();
                     VF.showNext();
@@ -238,7 +282,7 @@ public class NewReportActivity extends SherlockActivity{
                     //return false;
                 }
                 else if(VF.getDisplayedChild() == VF.getChildCount()-1){
-                    if (checkCredentials()) submitFinishedReport();
+                    if (checkRequiredFields(VF.getDisplayedChild()) && checkCredentials()) submitFinishedReport();
                 }
                 invalidateOptionsMenu();
                 return true;
@@ -267,6 +311,19 @@ public class NewReportActivity extends SherlockActivity{
                     requiredToast.show();
                     return false;
                 }
+                return true;
+            case 6:
+                EditText username = (EditText) findViewById(R.id.username);
+                EditText password = (EditText) findViewById(R.id.password);
+                if (username.getText().toString().trim().length() == 0) {
+                    requiredToast.setText("Username " + required);
+                }
+                else if (password.getText().toString().trim().length() == 0) {
+                    requiredToast.setText("Password " + required);
+                }
+                else return true;
+                requiredToast.show();
+                return false;
             default:
                 return true;
         }
@@ -352,25 +409,30 @@ public class NewReportActivity extends SherlockActivity{
                                 file.delete();
                             }
 
+                            isDeleteDialogOpen = false;
                             finish();
                         }
                     })
                     .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,int id) {
+                            isDeleteDialogOpen = false;
                             dialog.cancel();
                         }
                     });
 
             AlertDialog alertDialog = alertDialogBuilder.create();
 
-            alertDialog.show();
+            if (!isDeleteDialogOpen) {
+                isDeleteDialogOpen = true;
+                alertDialog.show();
+            }
         } else {
             VF.showPrevious();
         }
     }
 
     private String checkEmpty(String value){
-        if (value.length()==0) value = getString(R.string.no_input);
+        if (value.trim().length()==0) value = getString(R.string.no_input);
         return value;
     }
 
@@ -585,22 +647,22 @@ public class NewReportActivity extends SherlockActivity{
     private boolean checkCredentials() {
     	byte[] passBytes;
     	String USERNAME, PASSWORD;
-    	
-    	DataBaseHelper helper = new DataBaseHelper(this);
-    	helper.openDataBase();
 
         EditText editText1=(EditText )findViewById(R.id.username);
         EditText editText2=(EditText )findViewById(R.id.password);
         USERNAME           =editText1.getText().toString().trim();
         PASSWORD           =editText2.getText().toString().trim();
+
+        DataBaseHelper helper = new DataBaseHelper(this);
+        helper.openDataBase();
+
+        Cursor cursor = helper.getPair(USERNAME);
         
         try {
 			passBytes = PASSWORD.getBytes("UTF-8");
 			MessageDigest sha = MessageDigest.getInstance("SHA-1");
             passBytes = sha.digest(passBytes);
             Log.d(TAG+" checkCredentials()", USERNAME);
-            
-            Cursor cursor = helper.getPair(USERNAME);
             
         	if (cursor == null) {
         		//Toast.makeText(getApplicationContext(), "No existing user!", Toast.LENGTH_LONG).show();
@@ -609,8 +671,13 @@ public class NewReportActivity extends SherlockActivity{
         	}
         	
         	cursor.moveToFirst();
+            byte[] test = cursor.getString(1).getBytes("UTF-8");
+            MessageDigest s = MessageDigest.getInstance("SHA-1");
+            test = s.digest(test);
+            String f = byteArrayToHexString(test);
 
             Log.d(TAG, cursor.getString(1));
+            Log.d(TAG, f);
 
             String temp = byteArrayToHexString(passBytes);
             Log.d(TAG, temp);
@@ -626,7 +693,10 @@ public class NewReportActivity extends SherlockActivity{
 			e.printStackTrace();
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
-		}
+		} finally {
+            if (cursor != null) cursor.close();
+            helper.close();
+        }
         
     	return true;
     }

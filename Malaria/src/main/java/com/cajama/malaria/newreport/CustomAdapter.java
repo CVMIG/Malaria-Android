@@ -17,9 +17,11 @@ import com.cajama.malaria.R;
 public class CustomAdapter extends ArrayAdapter<String> {
     Context c;
     String[] s;
+    int t;
 
     public CustomAdapter(Context context, int textViewResourceId, String[] objects) {
         super(context, textViewResourceId, objects);
+        t = textViewResourceId;
         c = context;
         s = objects;
     }
@@ -37,7 +39,7 @@ public class CustomAdapter extends ArrayAdapter<String> {
     public View getCustomView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View row=inflater.inflate(R.layout.row, parent, false);
+        View row=inflater.inflate(t, parent, false);
         TextView label=(TextView)row.findViewById(R.id.weekofday);
         label.setText(s[position]);
 

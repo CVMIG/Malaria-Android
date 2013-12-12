@@ -1694,6 +1694,10 @@ bold
                     parent="@android:style/TextAppearance" />
 
                 <style
+                    name="Widget.Sherlock.Light.ActionButton"
+                    parent="Widget.Sherlock.ActionButton" />
+
+                <style
                     name="Widget.Sherlock.Light.ListPopupWindow"
                     parent="Widget" >
                     <item name="android:dropDownSelector">
@@ -1713,9 +1717,11 @@ wrap_content
                     </item>
                 </style>
 
-                <style
-                    name="Widget.Sherlock.Light.ActionButton"
-                    parent="Widget.Sherlock.ActionButton" />
+                <style name="TextAppearance.Sherlock.Light.SearchResult.Title" >
+                    <item name="android:textSize">
+18sp
+                    </item>
+                </style>
 
                 <style
                     name="Widget.Sherlock.TextView.SpinnerItem"
@@ -1728,12 +1734,6 @@ wrap_content
                     </item>
                     <item name="android:paddingRight">
 8dp
-                    </item>
-                </style>
-
-                <style name="TextAppearance.Sherlock.Light.SearchResult.Title" >
-                    <item name="android:textSize">
-18sp
                     </item>
                 </style>
 
@@ -1750,10 +1750,6 @@ wrap_content
 ?android:attr/textColorPrimaryInverse
                     </item>
                 </style>
-
-                <attr
-                    name="subtitleTextStyle"
-                    format="reference" />
 
                 <style
                     name="Theme.Sherlock.Light.DarkActionBar"
@@ -1851,6 +1847,10 @@ wrap_content
 @drawable/abs__ic_commit_search_api_holo_dark
                     </item>
                 </style>
+
+                <attr
+                    name="subtitleTextStyle"
+                    format="reference" />
 
                 <style
                     name="Widget.Sherlock.Light.ProgressBar.Horizontal"
@@ -3239,6 +3239,10 @@ false
                 </string>
 
                 <style
+                    name="TextAppearance.Sherlock.Light.Widget.PopupMenu.Large"
+                    parent="TextAppearance.Sherlock.Widget.PopupMenu.Large" />
+
+                <style
                     name="Widget.Sherlock.SearchAutoCompleteTextView"
                     parent="Sherlock.__Widget.SearchAutoCompleteTextView" >
                     <item name="android:dropDownSelector">
@@ -3249,29 +3253,14 @@ false
                     </item>
                 </style>
 
-                <style
-                    name="TextAppearance.Sherlock.Light.Widget.PopupMenu.Large"
-                    parent="TextAppearance.Sherlock.Widget.PopupMenu.Large" />
-
-                <color name="abs__bright_foreground_disabled_holo_light" >#ffb2b2b2
-                </color>
-
                 <style name="TextAppearance.Sherlock.Widget.PopupMenu.Large" >
                     <item name="android:textSize">
 18sp
                     </item>
                 </style>
 
-                <style
-                    name="TextAppearance.Sherlock.Widget.DropDownHint"
-                    parent="Widget" >
-                    <item name="android:textColor">
-?textColorPrimary
-                    </item>
-                    <item name="android:textSize">
-14sp
-                    </item>
-                </style>
+                <color name="abs__bright_foreground_disabled_holo_light" >#ffb2b2b2
+                </color>
 
                 <style
                     name="Theme.Sherlock"
@@ -3457,6 +3446,17 @@ false
                     </item>
                 </style>
 
+                <style
+                    name="TextAppearance.Sherlock.Widget.DropDownHint"
+                    parent="Widget" >
+                    <item name="android:textColor">
+?textColorPrimary
+                    </item>
+                    <item name="android:textSize">
+14sp
+                    </item>
+                </style>
+
                 <dimen name="abs__action_bar_default_height" >48dip
                 </dimen>
 
@@ -3468,14 +3468,6 @@ false
                     </item>
                     <item name="android:textColor">
 ?android:attr/textColorSecondary
-                    </item>
-                </style>
-
-                <style
-                    name="Widget.Sherlock.Spinner.DropDown.ActionBar"
-                    parent="Sherlock.__Widget.Holo.Spinner" >
-                    <item name="android:background">
-@drawable/abs__spinner_ab_holo_dark
                     </item>
                 </style>
 
@@ -3512,6 +3504,14 @@ false
                     </item>
                 </style>
 
+                <style
+                    name="Widget.Sherlock.Spinner.DropDown.ActionBar"
+                    parent="Sherlock.__Widget.Holo.Spinner" >
+                    <item name="android:background">
+@drawable/abs__spinner_ab_holo_dark
+                    </item>
+                </style>
+
                 <bool name="abs__config_actionMenuItemAllCaps" >
 true
                 </bool>
@@ -3527,6 +3527,17 @@ true
                 <style
                     name="TextAppearance.Sherlock.Small"
                     parent="Sherlock.__TextAppearance.Small" />
+
+                <style
+                    name="Sherlock.__Widget.Holo.ListView"
+                    parent="android:Widget.ListView" >
+                    <item name="android:divider">
+@drawable/abs__list_divider_holo_dark
+                    </item>
+                    <item name="android:listSelector">
+@drawable/abs__list_selector_holo_dark
+                    </item>
+                </style>
 
                 <style
                     name="Widget.Sherlock.ActionButton"
@@ -3551,17 +3562,6 @@ center
                     </item>
                     <item name="android:scaleType">
 center
-                    </item>
-                </style>
-
-                <style
-                    name="Sherlock.__Widget.Holo.ListView"
-                    parent="android:Widget.ListView" >
-                    <item name="android:divider">
-@drawable/abs__list_divider_holo_dark
-                    </item>
-                    <item name="android:listSelector">
-@drawable/abs__list_selector_holo_dark
                     </item>
                 </style>
 
@@ -3675,24 +3675,6 @@ marquee
                     type="id"/>
 
                 <style
-                    name="Widget.Sherlock.ProgressBar.Horizontal"
-                    parent="android:Widget.ProgressBar.Horizontal" >
-                    <item name="android:progressDrawable">
-@drawable/abs__progress_horizontal_holo_dark
-                    </item>
-                    <!-- item name="android:indeterminateDrawable">@drawable/abs__progress_indeterminate_horizontal_holo</item -->
-                    <item name="android:minHeight">
-16dip
-                    </item>
-                    <item name="android:maxHeight">
-16dip
-                    </item>
-                </style>
-
-                <string name="abs__action_menu_overflow_description" >More options
-                </string>
-
-                <style
                     name="Sherlock.__Widget.Holo.DropDownItem"
                     parent="Widget" >
                     <item name="android:textAppearance">
@@ -3706,6 +3688,24 @@ marquee
                     </item>
                     <item name="android:gravity">
 center_vertical
+                    </item>
+                </style>
+
+                <string name="abs__action_menu_overflow_description" >More options
+                </string>
+
+                <style
+                    name="Widget.Sherlock.ProgressBar.Horizontal"
+                    parent="android:Widget.ProgressBar.Horizontal" >
+                    <item name="android:progressDrawable">
+@drawable/abs__progress_horizontal_holo_dark
+                    </item>
+                    <!-- item name="android:indeterminateDrawable">@drawable/abs__progress_indeterminate_horizontal_holo</item -->
+                    <item name="android:minHeight">
+16dip
+                    </item>
+                    <item name="android:maxHeight">
+16dip
                     </item>
                 </style>
 
@@ -3757,6 +3757,8 @@ center_vertical
 
                 <dimen name="abs__action_bar_subtitle_top_margin" >-3dp
                 </dimen>
+                <dimen name="abs__action_bar_subtitle_bottom_margin" >5dip
+                </dimen>
 
                 <style name="Theme.Sherlock.Light.NoActionBar" >
                     <item name="windowActionBar">
@@ -3766,9 +3768,6 @@ false
 true
                     </item>
                 </style>
-
-                <dimen name="abs__action_bar_subtitle_bottom_margin" >5dip
-                </dimen>
 
                 <style
                     name="Widget.Sherlock.Light.Button.Small"
@@ -3799,10 +3798,6 @@ normal
                     </item>
                 </style>
 
-                <style
-                    name="Widget.Sherlock.Light.DropDownItem.Spinner"
-                    parent="Sherlock.__Widget.Holo.DropDownItem" />
-
                 <style name="TextAppearance.Sherlock.SearchResult.Subtitle" >
                     <item name="android:textSize">
 14sp
@@ -3811,6 +3806,10 @@ normal
 ?android:attr/textColorSecondary
                     </item>
                 </style>
+
+                <style
+                    name="Widget.Sherlock.Light.DropDownItem.Spinner"
+                    parent="Sherlock.__Widget.Holo.DropDownItem" />
 
                 <style
                     name="Widget.Sherlock.Light.ActionMode.Inverse"
@@ -3852,10 +3851,6 @@ wrap_content
                 </style>
 
                 <style
-                    name="Widget.Sherlock.Light.ActionBar.TabText"
-                    parent="Widget.Sherlock.ActionBar.TabText" />
-
-                <style
                     name="TextAppearance.Sherlock.Widget.ActionMode.Title"
                     parent="Widget" >
                     <item name="android:textSize">
@@ -3865,6 +3860,10 @@ wrap_content
 ?android:attr/textColorPrimary
                     </item>
                 </style>
+
+                <style
+                    name="Widget.Sherlock.Light.ActionBar.TabText"
+                    parent="Widget.Sherlock.ActionBar.TabText" />
 
                 <bool name="abs__config_showMenuShortcutsWhenKeyboardPresent" >
 false
@@ -3881,9 +3880,9 @@ false
                 </dimen>
                 <dimen name="abs__action_bar_subtitle_text_size" >12dp
                 </dimen>
-                <dimen name="abs__action_bar_subtitle_top_margin" >-2dp
-                </dimen>
                 <dimen name="abs__action_bar_default_height" >40dip
+                </dimen>
+                <dimen name="abs__action_bar_subtitle_top_margin" >-2dp
                 </dimen>
                 <dimen name="abs__action_bar_title_text_size" >16dp
                 </dimen>
@@ -3901,9 +3900,9 @@ false
                 </dimen>
                 <dimen name="abs__action_bar_icon_vertical_padding" >8dip
                 </dimen>
-                <dimen name="abs__action_bar_subtitle_top_margin" >-3dp
-                </dimen>
                 <dimen name="abs__action_bar_default_height" >48dip
+                </dimen>
+                <dimen name="abs__action_bar_subtitle_top_margin" >-3dp
                 </dimen>
             </file>
             <file
@@ -3915,9 +3914,9 @@ false
                 </dimen>
                 <dimen name="abs__action_bar_icon_vertical_padding" >4dip
                 </dimen>
-                <dimen name="abs__action_bar_subtitle_text_size" >12dp
-                </dimen>
                 <dimen name="abs__action_bar_subtitle_bottom_margin" >4dip
+                </dimen>
+                <dimen name="abs__action_bar_subtitle_text_size" >12dp
                 </dimen>
                 <dimen name="abs__action_bar_subtitle_top_margin" >-2dp
                 </dimen>
@@ -3927,9 +3926,9 @@ false
                 qualifiers="large-land-mdpi-1024x600" >
                 <dimen name="abs__action_bar_default_height" >48dip
                 </dimen>
-                <dimen name="abs__action_bar_subtitle_text_size" >14dp
-                </dimen>
                 <dimen name="abs__action_bar_icon_vertical_padding" >8dip
+                </dimen>
+                <dimen name="abs__action_bar_subtitle_text_size" >14dp
                 </dimen>
                 <dimen name="abs__action_bar_subtitle_bottom_margin" >5dip
                 </dimen>
@@ -3941,9 +3940,9 @@ false
             <file
                 path="C:\Users\Jasper\AndroidStudioProjects\Malaria-Android2\Malaria\build\exploded-bundles\MalariaAndroid2LibrariesActionBarSherlockActionbarsherlockUnspecified.aar\res\values-large-mdpi-1024x600\values.xml"
                 qualifiers="large-mdpi-1024x600" >
-                <dimen name="abs__action_button_min_width" >64dip
-                </dimen>
                 <dimen name="abs__action_bar_subtitle_bottom_margin" >9dip
+                </dimen>
+                <dimen name="abs__action_button_min_width" >64dip
                 </dimen>
                 <dimen name="abs__action_bar_icon_vertical_padding" >4dip
                 </dimen>
@@ -3976,12 +3975,13 @@ false
                 </dimen>
                 <dimen name="abs__action_bar_default_height" >56dip
                 </dimen>
-                <dimen name="abs__action_bar_subtitle_text_size" >14dp
-                </dimen>
 
                 <bool name="abs__action_bar_expanded_action_views_exclusive" >
 false
                 </bool>
+
+                <dimen name="abs__action_bar_subtitle_text_size" >14dp
+                </dimen>
             </file>
             <file
                 path="C:\Users\Jasper\AndroidStudioProjects\Malaria-Android2\Malaria\build\exploded-bundles\MalariaAndroid2LibrariesActionBarSherlockActionbarsherlockUnspecified.aar\res\values-v11\values.xml"
@@ -4088,24 +4088,24 @@ false
                     parent="android:Widget.Holo.Spinner" />
 
                 <style
-                    name="Widget.Sherlock.ActionBar.TabView"
-                    parent="android:Widget.Holo.ActionBar.TabView" />
-
-                <style
                     name="TextAppearance.Sherlock.Widget.PopupMenu"
                     parent="android:TextAppearance.Holo.Widget.PopupMenu" />
+
+                <style
+                    name="Widget.Sherlock.ActionBar.TabView"
+                    parent="android:Widget.Holo.ActionBar.TabView" />
 
                 <style
                     name="Widget.Sherlock.Light.ActionButton.Overflow"
                     parent="android:Widget.Holo.Light.ActionButton.Overflow" />
 
                 <style
-                    name="Widget.Sherlock.Light.ActionBar.TabView"
-                    parent="android:Widget.Holo.Light.ActionBar.TabView" />
-
-                <style
                     name="Widget.Sherlock.Light.ProgressBar"
                     parent="android:Widget.Holo.Light.ProgressBar" />
+
+                <style
+                    name="Widget.Sherlock.Light.ActionBar.TabView"
+                    parent="android:Widget.Holo.Light.ActionBar.TabView" />
 
                 <style
                     name="Sherlock.__Theme"
@@ -4238,32 +4238,32 @@ true
                     parent="android:Widget.Holo.ListView.DropDown" />
 
                 <style
-                    name="Widget.Sherlock.ProgressBar.Horizontal"
-                    parent="android:Widget.Holo.ProgressBar.Horizontal" />
-
-                <style
                     name="Widget.Sherlock.Light.ActionBar"
                     parent="android:Widget.Holo.Light.ActionBar" />
+
+                <style
+                    name="Widget.Sherlock.ProgressBar.Horizontal"
+                    parent="android:Widget.Holo.ProgressBar.Horizontal" />
 
                 <style
                     name="Widget.Sherlock.Light.SearchAutoCompleteTextView"
                     parent="android:Widget.Holo.Light.AutoCompleteTextView" />
 
                 <style
-                    name="TextAppearance.Sherlock.Light.Widget.PopupMenu.Large"
-                    parent="android:TextAppearance.Holo.Widget.PopupMenu.Large" />
-
-                <style
                     name="Widget.Sherlock.Light.ActionBar.Solid"
                     parent="android:Widget.Holo.Light.ActionBar.Solid" />
 
                 <style
-                    name="TextAppearance.Sherlock.Widget.ActionMode.Title"
-                    parent="android:TextAppearance.Holo.Widget.ActionMode.Title" />
+                    name="TextAppearance.Sherlock.Light.Widget.PopupMenu.Large"
+                    parent="android:TextAppearance.Holo.Widget.PopupMenu.Large" />
 
                 <style
                     name="TextAppearance.Sherlock.Widget.ActionBar.Subtitle"
                     parent="android:TextAppearance.Holo.Widget.ActionBar.Subtitle" />
+
+                <style
+                    name="TextAppearance.Sherlock.Widget.ActionMode.Title"
+                    parent="android:TextAppearance.Holo.Widget.ActionMode.Title" />
 
                 <style
                     name="Widget.Sherlock.SearchAutoCompleteTextView"
@@ -4306,17 +4306,20 @@ true
             <file
                 path="C:\Users\Jasper\AndroidStudioProjects\Malaria-Android2\Malaria\build\exploded-bundles\MalariaAndroid2LibrariesActionBarSherlockActionbarsherlockUnspecified.aar\res\values-xlarge\values.xml"
                 qualifiers="xlarge" >
+                <dimen name="abs__action_bar_title_text_size" >18dp
+                </dimen>
+
                 <item
                     name="abs__dialog_min_width_minor"
                     type="dimen">
 72%
                 </item>
 
-                <dimen name="abs__action_bar_title_text_size" >18dp
-                </dimen>
                 <dimen name="abs__action_bar_subtitle_bottom_margin" >9dip
                 </dimen>
                 <dimen name="abs__action_button_min_width" >64dip
+                </dimen>
+                <dimen name="abs__action_bar_subtitle_top_margin" >-3dp
                 </dimen>
 
                 <item
@@ -4325,13 +4328,11 @@ true
 45%
                 </item>
 
-                <dimen name="abs__action_bar_subtitle_top_margin" >-3dp
-                </dimen>
                 <dimen name="abs__action_bar_default_height" >56dip
                 </dimen>
-                <dimen name="abs__action_bar_subtitle_text_size" >14dp
-                </dimen>
                 <dimen name="abs__action_bar_icon_vertical_padding" >4dip
+                </dimen>
+                <dimen name="abs__action_bar_subtitle_text_size" >14dp
                 </dimen>
             </file>
         </source>
@@ -6644,7 +6645,7 @@ true
             <file
                 path="C:\Users\Jasper\AndroidStudioProjects\Malaria-Android2\Malaria\src\main\res\values\strings.xml"
                 qualifiers="" >
-                <string name="server_address" >http://192.168.43.91/
+                <string name="server_address" >http://befreicafsan.pyhtonanywhere.com/
                 </string>
                 <string name="title_activity_picture" >PictureActivity
                 </string>
@@ -6666,31 +6667,31 @@ true
                 </string>
                 <string name="treatment" >Treatment
                 </string>
-                <string name="empty_photos_message" >Click the camera icon to add a new photo.\n(Pindutin ang camera icon para kumuha ng bagong photo.)
-                </string>
                 <string name="api_key" >api/key/
+                </string>
+                <string name="empty_photos_message" >Click the camera icon to add a new photo.\n(Pindutin ang camera icon para kumuha ng bagong photo.)
                 </string>
                 <string name="api_send" >api/send/
                 </string>
-                <string name="entry_name" >Entry Name
-                </string>
                 <string name="slide_photos" >Slide Photos
+                </string>
+                <string name="entry_name" >Entry Name
                 </string>
                 <string name="address" >Address
                 </string>
                 <string name="summary" >Summary
                 </string>
-                <string name="remarks" >Remarks
-                </string>
                 <string name="submit" >Submit
                 </string>
-                <string name="date_sent" >Date Sent
+                <string name="remarks" >Remarks
                 </string>
-                <string name="age" >Age\n(Edad)
+                <string name="case_malaria" >Case
                 </string>
                 <string name="sent_entries" >Sent Entries\n(Naipadalang Entries)
                 </string>
-                <string name="case_malaria" >Case
+                <string name="age" >Age\n(Edad)
+                </string>
+                <string name="date_sent" >Date Sent
                 </string>
                 <string name="title_activity_log_in" >LogInActivity
                 </string>
@@ -6826,6 +6827,10 @@ Region XIII (Caraga)
 ARMM (Autonomous Region in Muslim Mindanao)
                     </item>
                 </string-array>
+
+                <string name="region" >Region
+                </string>
+
                 <string-array name="species_array" >
                     <item>
 Plasmodium falciparum
@@ -6844,59 +6849,57 @@ None
                     </item>
                 </string-array>
 
-                <string name="region" >Region
-                </string>
                 <string name="language_summary" >Choose a preferred language
-                </string>
-                <string name="cancel" >Cancel
                 </string>
                 <string name="exam_result" >Exam result
                 </string>
-                <string name="sex" >Sex\n(Kasarian)
+                <string name="cancel" >Cancel
                 </string>
-                <string name="settings_pref" >open_settings_page
+                <string name="sex" >Sex\n(Kasarian)
                 </string>
                 <string name="num_photos" >No. of Photos (Bilang ng Photos)
                 </string>
-                <string name="language_pref" >language
-                </string>
-                <string name="ok" >OK
+                <string name="settings_pref" >open_settings_page
                 </string>
                 <string name="category_title_1" >LANGUAGE
                 </string>
+                <string name="ok" >OK
+                </string>
+                <string name="language_pref" >language
+                </string>
                 <string name="new_report_cancel_warning" >This report will be discarded. All progress including photos will be lost.\n\n(Ang report na ito ay mabubura. Lahat ay mawawala kasama na ang mga photos.)
                 </string>
-                <string name="title_activity_fullscreen_photo" ></string>
                 <string name="connection_summary" >Define where the app connects
                 </string>
+                <string name="title_activity_fullscreen_photo" ></string>
                 <string name="connection_pref" >connection_address
                 </string>
                 <string name="hello_world" >Hello world!
                 </string>
-                <string name="login" >Login
-                </string>
                 <string name="category_title_2" >CONNECTIVITY
+                </string>
+                <string name="login" >Login
                 </string>
                 <string name="slide_number" >Slide Number
                 </string>
-                <string name="api_apk" >api/apk/
-                </string>
                 <string name="no_input" >No input
                 </string>
-                <string name="checkbox_text" ></string>
-                <string name="api_db" >api/db/
+                <string name="api_apk" >api/apk/
                 </string>
+                <string name="checkbox_text" ></string>
                 <string name="back" >Back
+                </string>
+                <string name="api_db" >api/db/
                 </string>
                 <string name="title_activity_sent_log" >Sent Entries
                 </string>
                 <string name="middle_name" >Middle Name
                 </string>
-                <string name="title_activity_queue_log" >Queued Entries
+                <string name="latitude" >Latitude
                 </string>
                 <string name="warning" >Warning (Babala)
                 </string>
-                <string name="latitude" >Latitude
+                <string name="title_activity_queue_log" >Queued Entries
                 </string>
                 <string name="diagnosis" >Diagnosis
                 </string>
@@ -6904,21 +6907,21 @@ None
                 </string>
                 <string name="title_activity_new_report" >Submit New Report
                 </string>
-                <string name="birthday" >Birthday\n(Kaarawan)
-                </string>
                 <string name="app_name" >Malaria
+                </string>
+                <string name="birthday" >Birthday\n(Kaarawan)
                 </string>
                 <string name="next" >Next
                 </string>
-                <string name="title_activity_login" >Login
-                </string>
                 <string name="delete" >Delete\n(Burahin)
+                </string>
+                <string name="title_activity_login" >Login
                 </string>
                 <string name="photo_delete_warning" >This photo will be deleted. This action is irreversible.\n\n(Ang photo na ito ay mabubura. Hindi na ito maibabalik.)
                 </string>
-                <string name="time_created" >Time Created
-                </string>
                 <string name="title_activity_new_report_patient_details" >New Report\n(Bagong Report)
+                </string>
+                <string name="time_created" >Time Created
                 </string>
             </file>
             <file
@@ -7035,27 +7038,27 @@ None
                     </item>
                 </string-array>
 
-                <string name="new_report_cancel_warning" >Ang ulat na ito ay mabubura. Lahat ng progreso kasama ang mga larawan ay mawawala. Bumalik sa menu?
-                </string>
                 <string name="Username" >Username
                 </string>
                 <string name="app_name" >Malaria
                 </string>
-                <string name="num_photos" >Bilang ng Larawan
+                <string name="new_report_cancel_warning" >Ang ulat na ito ay mabubura. Lahat ng progreso kasama ang mga larawan ay mawawala. Bumalik sa menu?
+                </string>
+                <string name="submit" >Ipadala
                 </string>
                 <string name="latitude" >Latitude
                 </string>
-                <string name="submit" >Ipadala
+                <string name="num_photos" >Bilang ng Larawan
                 </string>
                 <string name="api_apk" >api/apk/
                 </string>
                 <string name="longitude" >Longitude
                 </string>
-                <string name="date_sent" >Petsa ng Pagpapadala
+                <string name="slide_photos" >Larawan ng Slide
                 </string>
                 <string name="middle_name" >Middle Name
                 </string>
-                <string name="slide_photos" >Larawan ng Slide
+                <string name="date_sent" >Petsa ng Pagpapadala
                 </string>
                 <string name="progressBarText" >Pinoproseso… 
                 </string>
@@ -7169,19 +7172,13 @@ ARMM (Autonomous Region in Muslim Mindanao)
                 <string name="checkbox_text" ></string>
                 <string name="login" >Login
                 </string>
-                <string name="settings_summary" >Buksan ang System Settings at baguhin ang locale
-                </string>
                 <string name="delete_photo" >Burahin ang Larawan
                 </string>
-                <string name="settings_title" >Settings
+                <string name="settings_summary" >Buksan ang System Settings at baguhin ang locale
                 </string>
                 <string name="age" >Edad
                 </string>
-                <string name="date_created" >Petsa ng Pagkakagawa
-                </string>
-                <string name="back" >Bumalik
-                </string>
-                <string name="title_activity_new_report" >Magpadala ng Bagong Report
+                <string name="settings_title" >Settings
                 </string>
 
                 <string-array name="case_array" >
@@ -7193,13 +7190,21 @@ Malala
                     </item>
                 </string-array>
 
-                <string name="language_summary" >Pumili ng gustong wika
+                <string name="title_activity_new_report" >Magpadala ng Bagong Report
                 </string>
-                <string name="drugs_given" >Mga Ibinigay na Gamot
+                <string name="back" >Bumalik
+                </string>
+                <string name="date_created" >Petsa ng Pagkakagawa
+                </string>
+                <string name="language_summary" >Pumili ng gustong wika
                 </string>
                 <string name="connection_summary" >Ilagay saan kokonekta ang app
                 </string>
+                <string name="drugs_given" >Mga Ibinigay na Gamot
+                </string>
                 <string name="remarks" >Pagmamasid
+                </string>
+                <string name="language_pref" >language
                 </string>
 
                 <string-array name="language" >
@@ -7214,13 +7219,15 @@ Cebuano
                     </item>
                 </string-array>
 
-                <string name="language_pref" >language
-                </string>
                 <string name="patient_details" >Detalye ng Pasyente
+                </string>
+                <string name="summary" >Kabuuan
                 </string>
                 <string name="Password" >Password
                 </string>
-                <string name="summary" >Kabuuan
+                <string name="ok" >Oo
+                </string>
+                <string name="slide_number" >Slide Number
                 </string>
 
                 <string-array name="language_values" >
@@ -7235,15 +7242,11 @@ tl-rPH
                     </item>
                 </string-array>
 
-                <string name="slide_number" >Slide Number
-                </string>
-                <string name="ok" >Oo
-                </string>
                 <string name="diagnosis" >Pagsusuri
                 </string>
                 <string name="sent_entries" >Naipadalang Ulat
                 </string>
-                <string name="time_created" >Oras ng Pagkakagawa
+                <string name="exam_result" >Resulta ng Exam
                 </string>
 
                 <string-array name="gender_array" >
@@ -7255,15 +7258,15 @@ Babae
                     </item>
                 </string-array>
 
-                <string name="exam_result" >Resulta ng Exam
-                </string>
-                <string name="password" >Password
+                <string name="time_created" >Oras ng Pagkakagawa
                 </string>
                 <string name="home" >Simula
                 </string>
-                <string name="server_address" >http://192.168.43.91/
+                <string name="password" >Password
                 </string>
                 <string name="next" >Susunod
+                </string>
+                <string name="server_address" >http://192.168.43.91/
                 </string>
                 <string name="api_send" >api/send/
                 </string>
@@ -7271,9 +7274,9 @@ Babae
                 </string>
                 <string name="api_retry" >api/retype/
                 </string>
-                <string name="settings_pref" >open_settings_page
-                </string>
                 <string name="username" >Username
+                </string>
+                <string name="settings_pref" >open_settings_page
                 </string>
                 <string name="last_name" >Last Name
                 </string>
@@ -7298,6 +7301,11 @@ Babae
             <file
                 name="row"
                 path="C:\Users\Jasper\AndroidStudioProjects\Malaria-Android2\Malaria\src\main\res\layout\row.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="diagnosis_row"
+                path="C:\Users\Jasper\AndroidStudioProjects\Malaria-Android2\Malaria\src\main\res\layout\diagnosis_row.xml"
                 qualifiers=""
                 type="layout" />
         </source>

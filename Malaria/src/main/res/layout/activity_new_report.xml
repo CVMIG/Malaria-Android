@@ -226,58 +226,80 @@
                 android:visibility="gone" />
     </RelativeLayout>
 
-    <LinearLayout
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:id="@+id/fifth_flip"
+        android:fillViewport="true">
+
+        <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            android:weightSum="6"
+            android:padding="20dp">
 
-        <Spinner
+            <Spinner
                 android:id="@+id/case_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"/>
+                android:layout_gravity="left"
+                android:layout_weight="1" />
 
-        <Spinner
+            <Spinner
                 android:id="@+id/species_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"/>
+                android:layout_gravity="right"
+                android:gravity="right"
+                android:layout_weight="1" />
 
-        <EditText
+            <EditText
                 android:id="@+id/drugs_given"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:hint="@string/drugs_given"
                 android:inputType="text"
-                android:ems="10"/>
+                android:ems="10"
+                android:textSize="30dp"
+                android:layout_weight="1" />
 
-        <EditText
+            <EditText
                 android:id="@+id/exam_result"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:hint="@string/exam_result"
                 android:inputType="text"
-                android:ems="10"/>
+                android:ems="10"
+                android:textSize="30dp"
+                android:layout_weight="1" />
 
-        <EditText
+            <EditText
                 android:id="@+id/diagnostic_notes"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textImeMultiLine"
                 android:hint="@string/remarks"
-                android:ems="10"/>
-        <EditText
-            android:id="@+id/slide_number"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:layout_gravity="center_vertical"
-            android:hint="@string/slide_number"
-            />
-    </LinearLayout>
+                android:ems="10"
+                android:textSize="30dp"
+                android:layout_weight="1" />
+            <EditText
+                android:id="@+id/slide_number"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:layout_gravity="center_vertical"
+                android:hint="@string/slide_number"
+                android:textSize="30dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+    </ScrollView>
+
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -361,16 +383,14 @@
         android:layout_height="fill_parent"
         android:orientation="vertical"
         android:id="@+id/fifth_flip"
-        android:fillViewport="true"
-        android:padding="50dp">
+        android:fillViewport="true">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:measureWithLargestChild="false"
-            android:baselineAligned="false"
-            android:weightSum="3">
+            android:weightSum="3"
+            android:padding="20dp">
 
             <RelativeLayout
                 android:layout_width="fill_parent"

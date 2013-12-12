@@ -1,30 +1,22 @@
 package com.cajama.malaria;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.cajama.background.DialogActivity;
 import com.cajama.background.FinalSendingService;
 import com.cajama.background.SyncService;
-import com.cajama.background.TestSendService;
 import com.cajama.background.UpdateService;
 import com.cajama.malaria.entryLogs.QueueLogActivity;
 import com.cajama.malaria.entryLogs.SentLogActivity;
 import com.cajama.malaria.newreport.NewReportActivity;
 
-import java.util.Locale;
 import android.os.Handler;
-import java.util.logging.LogRecord;
 
 public class MainActivity extends Activity {
 
@@ -36,12 +28,12 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent startSyncDB = new Intent(this, SyncService.class);
-        startService(startSyncDB);
+        /*Intent startSyncDB = new Intent(this, SyncService.class);
+        startService(startSyncDB);*/
         Intent startUpload = new Intent(this, FinalSendingService.class);
         startService(startUpload);
-        Intent startUpdate = new Intent(this, UpdateService.class);
-        startService(startUpdate);
+        /*Intent startUpdate = new Intent(this, UpdateService.class);
+        startService(startUpdate);*/
     }
 
     @Override
@@ -79,28 +71,20 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public void onActivityResult(int request, int result, Intent data) {
         messageHandler.postDelayed(recreate, 0);
     }
 
     private Runnable recreate = new Runnable() {
-        @TargetApi(Build.VERSION_CODES.HONEYCOMB)
         @Override
         public void run() {
-            ctx.recreate();
+            if (Build.VERSION.SDK_INT >= 11)
+                ctx.recreate();
+            else {
+                onResume();
+            }
             Log.w("Handler...", "Recreate requested.");
         }
     };
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
 }

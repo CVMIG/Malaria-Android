@@ -39,6 +39,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigInteger;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.security.KeyFactory;
 import java.security.MessageDigest;
 import java.security.interfaces.RSAPublicKey;
@@ -289,6 +291,7 @@ public class FinalSendingService extends Service {
             HttpPost post = null;
             HttpClient client = null;
             MultipartEntity mp = null;
+
             try {
                 client = new DefaultHttpClient();
                 post = new HttpPost(url);
@@ -303,7 +306,7 @@ public class FinalSendingService extends Service {
                 HttpResponse response = client.execute(post);
                 Log.d(TAG, "response: "+ response.getStatusLine());
 
-                BufferedReader getReader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+                BufferedReader getReader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()), 8192);
                 final StringBuilder getResultBuilder = new StringBuilder();
                 String getResult;
                 try {

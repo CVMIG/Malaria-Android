@@ -7,17 +7,19 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.view.View;
+import android.preference.PreferenceActivity;
+
 
 /**
  * Created by Jasper on 11/13/13.
  */
-public class SettingsActivity extends Activity {
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+public class SettingsActivity extends PreferenceActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
+        if (Build.VERSION.SDK_INT >= 11)
+            getFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
+        else
+            addPreferencesFromResource(R.xml.preferences);
     }
 }

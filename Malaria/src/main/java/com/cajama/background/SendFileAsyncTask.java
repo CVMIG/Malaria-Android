@@ -5,19 +5,30 @@ import android.os.AsyncTask;
 import android.util.Log;
 import com.cajama.malaria.R;
 
+import org.apache.http.HttpHost;
+import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.ContentBody;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.HttpContext;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.InetAddress;
 
 /**
  * Created by Jasper on 8/4/13.
@@ -29,6 +40,8 @@ public class SendFileAsyncTask extends AsyncTask<File, Void, String> {
 
     public SendFileAsyncTask(final String server) {
         this.server = server;
+        System.out.println(server);
+        System.out.println(this.server);
     }
 
     public void setOnResultListener(OnAsyncResult onAsyncResult) {
@@ -40,9 +53,11 @@ public class SendFileAsyncTask extends AsyncTask<File, Void, String> {
         for (File currentFile : params) {
             //File currentFile = params[0];
             Log.d(TAG, currentFile.getAbsolutePath());
+
             if (onAsyncResult != null) {
                 Log.d(TAG, "doInBackground()");
-                AndroidHttpClient http = AndroidHttpClient.newInstance("MyApp"+currentFile.getName());
+                AndroidHttpClient http = AndroidHttpClient.newInstance("Android");
+                //HttpClient http = new DefaultHttpClient();
                 HttpPost method = new HttpPost(this.server);
 
                 try {
@@ -62,9 +77,15 @@ public class SendFileAsyncTask extends AsyncTask<File, Void, String> {
                 Log.d(TAG, String.valueOf(method.getRequestLine()));
 
                 try {
-                    HttpResponse response = http.execute(method);
+                    //HttpResponse response = http.execute(method);
+                    ResponseHandler<String> rh = new BasicResponseHandler();
+                    String response = http.execute(method, rh);
 
-                    BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+                    StringBuilder out = new StringBuilder(response);
+
+
+
+                    /*BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
                     final StringBuilder out = new StringBuilder();
                     String line;
                     try {
@@ -81,7 +102,7 @@ public class SendFileAsyncTask extends AsyncTask<File, Void, String> {
                     } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
-                    }
+                    }*/
                     //final String serverResponse = slurp(is);
                     Log.d(TAG, "serverResponse: " + out.toString());
 
@@ -96,7 +117,6 @@ public class SendFileAsyncTask extends AsyncTask<File, Void, String> {
                     else onAsyncResult.onResult(0, "failed");
                     method.getEntity().consumeContent();
                     http.getConnectionManager().shutdown();
-                    http.close();
                     method.abort();
 
                 } catch (Exception e) {

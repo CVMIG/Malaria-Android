@@ -3,6 +3,7 @@ package com.cajama.malaria.newreport;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.text.format.Time;
 import android.util.Base64;
@@ -92,7 +93,17 @@ public class AssembleData {
             byte[] skByte = accountData.get(1).getBytes("UTF-8");
             MessageDigest sha = MessageDigest.getInstance("SHA-1");
             skByte = sha.digest(skByte);
-            skByte = Arrays.copyOf(skByte, 16); // use only first 128 bit
+            System.out.println(skByte.length);
+            if (Build.VERSION.SDK_INT >= 9)
+                skByte = Arrays.copyOf(skByte, 16); // use only first 128 bit
+            else {
+                byte[] src = new byte[16];
+                System.arraycopy(skByte, 0, src, 0, 16);
+                skByte = src;
+            }
+            /*byte[] src = skByte;
+            System.arraycopy(src, 0, skByte, 0, 16);*/
+
             SecretKeySpec secretKey = new SecretKeySpec(skByte, "AES");
 
             Log.v("SeckretKeybase64", Base64.encodeToString(skByte,Base64.DEFAULT));

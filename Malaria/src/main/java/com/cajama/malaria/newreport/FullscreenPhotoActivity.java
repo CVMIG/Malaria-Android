@@ -20,8 +20,7 @@ import com.cajama.malaria.R;
 public class FullscreenPhotoActivity extends SherlockActivity {
     int pos;
     private String path;
-
-
+    boolean isDeleteDialogOpen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,18 +75,23 @@ public class FullscreenPhotoActivity extends SherlockActivity {
                                 resultIntent.putExtra("pos", pos);
                                 //resultIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 setResult(RESULT_OK, resultIntent);
+                                isDeleteDialogOpen = false;
                                 finish();
                             }
                         })
                         .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                isDeleteDialogOpen = false;
                                 dialog.cancel();
                             }
                         });
 
                 AlertDialog alertDialog = alertDialogBuilder.create();
 
-                alertDialog.show();
+                if (!isDeleteDialogOpen) {
+                    isDeleteDialogOpen = true;
+                    alertDialog.show();
+                }
 
                 return true;
             case android.R.id.home:
